@@ -87,7 +87,33 @@
     const highscoreDisplay = document.getElementById('highscore');
     let board = Array(4).fill(null).map(() => Array(4).fill(0));
     let score = 0;
-    let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
+    let highScore = 0;
+
+    function fetchHighScore() {
+        fetch('/highscore')
+            .then(response => response.json())
+            .then(data => {
+                highScore = data.score;
+                highscoreDisplay.textContent = `High Score: ${highScore}`;
+            });
+    }
+
+    function updateHighScore() {
+        if (score > highScore) {
+            highScore = score;
+            fetch('/highscore', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ score: highScore }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                highscoreDisplay.textContent = `High Score: ${data.score}`;
+            });
+        }
+    }
 
     function initGame() {
         addTile();
@@ -239,13 +265,6 @@
         rewindButton.style.display = 'block';
     }
 
-    function updateHighScore() {
-        if (score > highScore) {
-            highScore = score;
-            localStorage.setItem('highScore', highScore); // Save to localStorage
-        }
-    }
-
     function resetGame() {
         location.reload(); // Refresh the page
     }
@@ -267,7 +286,10 @@
         }
     });
 
-    initGame();
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchHighScore();
+        initGame();
+    });
 </script>
 </body>
 </html>
