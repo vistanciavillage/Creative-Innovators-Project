@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+make the highscore visable to anyone who acesses the website and changes for everyone when someone beats it<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,33 +87,7 @@
     const highscoreDisplay = document.getElementById('highscore');
     let board = Array(4).fill(null).map(() => Array(4).fill(0));
     let score = 0;
-    let highScore = 0;
-
-    function fetchHighScore() {
-        fetch('/highscore')
-            .then(response => response.json())
-            .then(data => {
-                highScore = data.score;
-                highscoreDisplay.textContent = `High Score: ${highScore}`;
-            });
-    }
-
-    function updateHighScore() {
-        if (score > highScore) {
-            highScore = score;
-            fetch('/highscore', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ score: highScore }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                highscoreDisplay.textContent = `High Score: ${data.score}`;
-            });
-        }
-    }
+    let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
 
     function initGame() {
         addTile();
@@ -143,7 +117,7 @@
         for (let r = 0; r < 4; r++) {
             for (let c = 0; c < 4; c++) {
                 let tile = document.createElement('div');
-                tile.classList.add('tile', `tile-${board[r][c]}`);
+                tile.classList.add('tile', tile-${board[r][c]});
                 tile.textContent = board[r][c] > 0 ? board[r][c] : '';
                 gameArea.appendChild(tile);
 
@@ -156,8 +130,8 @@
 
         // Set body background color to the highest tile color
         document.body.style.backgroundColor = getTileColor(highestTile);
-        scoreDisplay.textContent = `Score: ${score}`; // Update score display
-        highscoreDisplay.textContent = `High Score: ${highScore}`; // Update high score display
+        scoreDisplay.textContent = Score: ${score}; // Update score display
+        highscoreDisplay.textContent = High Score: ${highScore}; // Update high score display
 
         // Check for game over
         if (isGameOver()) {
@@ -265,6 +239,13 @@
         rewindButton.style.display = 'block';
     }
 
+    function updateHighScore() {
+        if (score > highScore) {
+            highScore = score;
+            localStorage.setItem('highScore', highScore); // Save to localStorage
+        }
+    }
+
     function resetGame() {
         location.reload(); // Refresh the page
     }
@@ -286,10 +267,7 @@
         }
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        fetchHighScore();
-        initGame();
-    });
+    initGame();
 </script>
 </body>
 </html>
