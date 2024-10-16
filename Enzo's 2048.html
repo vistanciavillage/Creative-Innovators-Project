@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,7 +74,7 @@
 </head>
 <body>
 
-<h1>Evangeline's 2048</h1>
+<h1>Enzo's 2048</h1>
 <div id="highscore">High Score: 0</div>
 <div id="score">Score: 0</div>
 <div id="game"></div>
@@ -117,7 +117,7 @@
         for (let r = 0; r < 4; r++) {
             for (let c = 0; c < 4; c++) {
                 let tile = document.createElement('div');
-                tile.classList.add('tile', tile-${board[r][c]});
+                tile.classList.add('tile', `tile-${board[r][c]}`);
                 tile.textContent = board[r][c] > 0 ? board[r][c] : '';
                 gameArea.appendChild(tile);
 
@@ -130,8 +130,8 @@
 
         // Set body background color to the highest tile color
         document.body.style.backgroundColor = getTileColor(highestTile);
-        scoreDisplay.textContent = Score: ${score}; // Update score display
-        highscoreDisplay.textContent = High Score: ${highScore}; // Update high score display
+        scoreDisplay.textContent = `Score: ${score}`; // Update score display
+        highscoreDisplay.textContent = `High Score: ${highScore}`; // Update high score display
 
         // Check for game over
         if (isGameOver()) {
