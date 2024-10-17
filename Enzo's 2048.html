@@ -10,10 +10,10 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #faf8ef; /* Default background color */
+            background-color: #faf8ef;
             font-family: Arial, sans-serif;
             margin: 0;
-            flex-direction: column; /* Stack elements vertically */
+            flex-direction: column;
         }
         h1 {
             font-size: 2.5em;
@@ -42,8 +42,9 @@
             font-size: 2em;
             color: white;
             border-radius: 5px;
-            background-color: #333; /* Default background for empty tiles */
+            background-color: #333;
         }
+        /* Tile colors */
         .tile-2 { background-color: #eee4da; }
         .tile-4 { background-color: #de9e9e; }
         .tile-8 { background-color: #f7b32c; }
@@ -59,17 +60,6 @@
         .tile-8192 { background-color: #1e90ff; }
         .tile-16384 { background-color: #ff1493; }
         .tile-32768 { background-color: #c71585; }
-        #rewind-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: none; /* Initially hidden */
-        }
     </style>
 </head>
 <body>
@@ -78,11 +68,9 @@
 <div id="highscore">High Score: 0</div>
 <div id="score">Score: 0</div>
 <div id="game"></div>
-<button id="rewind-button" onclick="resetGame()">Try Again</button>
 
 <script>
     const gameArea = document.getElementById('game');
-    const rewindButton = document.getElementById('rewind-button');
     const scoreDisplay = document.getElementById('score');
     const highscoreDisplay = document.getElementById('highscore');
     let board = Array(4).fill(null).map(() => Array(4).fill(0));
@@ -130,13 +118,15 @@
 
         // Set body background color to the highest tile color
         document.body.style.backgroundColor = getTileColor(highestTile);
-        scoreDisplay.textContent = `Score: ${score}`; // Update score display
-        highscoreDisplay.textContent = `High Score: ${highScore}`; // Update high score display
+        scoreDisplay.textContent = `Score: ${score}`;
+        highscoreDisplay.textContent = `High Score: ${highScore}`;
 
         // Check for game over
         if (isGameOver()) {
-            showRewindButton();
             updateHighScore();
+            setTimeout(() => {
+                location.reload(); // Refresh the page
+            }, 2000); // Delay for 2 seconds before refresh
         }
     }
 
@@ -235,19 +225,11 @@
         return true; // No moves left
     }
 
-    function showRewindButton() {
-        rewindButton.style.display = 'block';
-    }
-
     function updateHighScore() {
         if (score > highScore) {
             highScore = score;
             localStorage.setItem('highScore', highScore); // Save to localStorage
         }
-    }
-
-    function resetGame() {
-        location.reload(); // Refresh the page
     }
 
     document.addEventListener('keydown', (event) => {
