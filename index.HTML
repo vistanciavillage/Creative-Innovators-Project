@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
             text-align: center;
             font-size: 2.5em;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
         }
         nav {
             margin: 20px 0;
@@ -90,7 +90,38 @@
         .back-to-top:hover {
             background: #D5006D; /* Dark Pink */
             color: #fff;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
+        }
+
+        /* New CSS for Team Section */
+        #team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #team h2 {
+            text-align: center;
+            margin-bottom: 20px; /* Adds space below the title */
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px; /* Adjust width as needed */
+            margin: 15px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-info {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -101,7 +132,7 @@
     <img src="logo.PNG" alt="Logo" style="max-width: 200px;"/>
     <nav>
         <a href="#about">About Us</a>
-        <a href="#mission">Our Mission</a> <!-- Link to the new section -->
+        <a href="#mission">Our Mission</a>
         <a href="#events">Events</a>
         <a href="#schedule">Schedule</a>
         <a href="#team">Meet the Team</a>
@@ -109,44 +140,95 @@
         <a href="#find-us">Where to Find Us</a>
         <a href="#social-media">Follow Us on Social Media</a>
         <a href="#contact">Contact Us</a>
+        <a href="#support">Support Us</a> <!-- New link -->
     </nav>
 </header>
 
 <section id="about">
     <h2>About Us</h2>
-    <p>Blank</p>                   <!-- Write --> 
+    <p></p>                   
 </section>
 
 <section id="mission">
     <h2>Our Mission</h2>
-    <p>Blank</p>                   <!-- Write -->
+    <p>Fostering innovation, resilience, creativity, and teamwork to inspire youth to be part of the solution for today's challenges in our community and the world at large.</p>                   
 </section>
 
 <section id="events">
     <h2>Events</h2>
-    <p>month/day/year:event</p>                   <!-- Write -->
-    <p>month/day/year:event</p>                   <!-- Write -->
-    <p>month/day/year:event</p>                   <!-- Write -->
+    <p>month/day/year: event</p>                   
+    <p>month/day/year: event</p>                   
+    <p>month/day/year: event</p>                   
 </section>
 
 <section id="schedule">
     <h2>Schedule</h2>
-    <p>Blank</p>                   <!-- Write -->
+    <p>Blank</p>                   
 </section>
 
 <section id="team">
-    <h2>Meet the Team</h2>                   <!-- Write -->
-    <p>President:</p>                   <!-- Write -->
-    <p>Vice President:</p>                   <!-- Write -->
-    <p>Treasurer:</p>                   <!-- Write -->
-    <p>Secretary:</p>                   <!-- Write -->
-    <p>Historian:</p>                   <!-- Write -->
-    <p>Club Sponsor:</p>                   <!-- Write -->
+    <br>
+    <div class="team-member">
+        <div class="member-info">
+            <h3>President</h3>
+            <p>Name</p>
+        </div>
+        <img src="president.jpg" alt="President" />
+        <p>Description about the President.</p>
+    </div>
+    <div class="team-member">
+        <div class="member-info">
+            <h3>Vice President</h3>
+            <p>Name</p>
+        </div>
+        <img src="vice_president.jpg" alt="Vice President" />
+        <p>Description about the Vice President.</p>
+    </div>
+    <div class="team-member">
+        <div class="member-info">
+            <h3>Treasurer</h3>
+            <p>Name</p>
+        </div>
+        <img src="treasurer.jpg" alt="Treasurer" />
+        <p>Description about the Treasurer.</p>
+    </div>
+    <div class="team-member">
+        <div class="member-info">
+            <h3>Secretary</h3>
+            <p>Name</p>
+        </div>
+        <img src="secretary.jpg" alt="Secretary" />
+        <p>Description about the Secretary.</p>
+    </div>
+    <div class="team-member">
+        <div class="member-info">
+            <h3>Historian</h3>
+            <p>Name</p>
+        </div>
+        <img src="historian.jpg" alt="Historian" />
+        <p>Description about the Historian.</p>
+    </div>
+    <div class="team-member">
+        <div class="member-info">
+            <h3>Coach</h3>
+            <p>Name</p>
+        </div>
+        <img src="sponsor.jpg" alt="Club Sponsor" />
+        <p>Description about the Coach.</p>
+    </div>
+  <div class="team-member">
+        <div class="member-info">
+            <h3>Coach</h3>
+            <p>Name</p>
+        </div>
+        <img src="sponsor.jpg" alt="Club Sponsor" />
+        <p>Description about the Coach.</p>
+    </div>
 </section>
 
 <section id="odyssey">
     <h2>Odyssey of the Mind</h2>
-    <p>Blank</p>                   <!-- Write -->
+    <p>Blank</p>                   
     <p>Visit <a href="https://odysseyofthemind.com/">Odyssey of the Mind</a> for more information.</p>
     <img src="OMER.PNG" alt="OMER Image" style="max-width: 200px;"/>
 </section>
@@ -170,13 +252,13 @@
             <a href="https://www.facebook.com/yourpage"><img src="Facebook Favicon.png" alt="Facebook"></a>
         </div>
         <div class="social">
-            <a href="https://twitter.com/yourhandle"><img src="X Favicon.png" alt="X"></a>
-        </div>
-        <div class="social">
             <a href="https://www.instagram.com/yourhandle"><img src="Insta Favicon.png" alt="Instagram"></a>
         </div>
         <div class="social">
-            <a href="https://www.snapchat.com/add/yourhandle"><img src="Snapchat Favicon.png" alt="Snapchat"></a>
+            <a href="https://www.tiktok.com/@yourhandle"><img src="Tiktok.png" alt="TikTok"></a>
+        </div>
+        <div class="social">
+            <a href="https://www.youtube.com/yourchannel"><img src="yt.png" alt="YouTube"></a>
         </div>
     </div>
 </section>
@@ -185,6 +267,12 @@
     <h2>Contact Us</h2>
     <p>Phone: <span>Blank</span></p>
     <p>Email: <a href="mailto:blank@gmail.com">blank@gmail.com</a></p>
+</section>
+
+<section id="support">
+    <h2>Support Us</h2>
+    <p>Your support is vital to our mission.</p>
+    <p>For more information, please visit our <a href="https://www.gofundme.com/yourgofundmelink" target="_blank">GoFundMe page</a>.</p>
 </section>
 
 <footer>
