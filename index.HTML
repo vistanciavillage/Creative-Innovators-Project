@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>    
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -64,6 +64,12 @@
             height: auto;
             border-radius: 10px;
         }
+        .team-member img {
+            width: 200px; /* Fixed width */
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+            border-radius: 10px; /* Consistent border radius */
+        }
         .social-media {
             display: flex;
             flex-wrap: wrap;
@@ -123,6 +129,14 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+
+        #odyssey-angels {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -130,18 +144,17 @@
 <header id="top">
     <h1>Vistancia Village Creative Innovators Project</h1>
     <h2>Website under construction, sorry for the inconvenience </h2>
-    <!--             <img src="logo.PNG" alt="Logo" style="max-width: 200px;"/>          -->
     <nav>
         <a href="#about">About Us</a>
         <a href="#mission">Our Mission</a>
         <a href="#events">Events</a>
-        <a href="#schedule">Schedule</a>
         <a href="#team">Meet the Team</a>
         <a href="#odyssey">Odyssey of the Mind</a>
+        <a href="#odyssey-angels">Odyssey Angels</a> <!-- Updated link -->
         <a href="#find-us">Where to Find Us</a>
         <a href="#social-media">Follow Us on Social Media</a>
         <a href="#contact">Contact Us</a>
-        <a href="#support">Support Us</a> <!-- New link -->
+        <a href="#support">Support Us</a>
     </nav>
 </header>
 
@@ -157,14 +170,8 @@
 
 <section id="events">
     <h2>Events</h2>
-    <p>month/day/year: event</p>                   
-    <p>month/day/year: event</p>                   
-    <p>month/day/year: event</p>                   
-</section>
-
-<section id="schedule">
-    <h2>Schedule</h2>
-    <p>Blank</p>                   
+    <p>03/01/2024: Odessey Of the Mind Regional Competion</p>                   
+    <p>05/21/2024: Odessey Of the Mind World Finals</p>                   
 </section>
 
 <section id="team">
@@ -190,16 +197,16 @@
             <h2>Treasurer</h2>
             <p>Enzo Tegeler</p>
         </div>
-        <img src="blank.png" alt="Treasurer" />
-        <p>I Joined the club in 2022 during 8th grade.I specialize in engineering related fields.when I Graduate I plan on becomeing a Aerospace Engineer</p>
+        <img src="Enzo.png" alt="Treasurer" />
+        <p>I joined the club in 2022 during 8th grade. I specialize in engineering related fields. When I graduate, I plan on becoming an Aerospace Engineer.</p>
     </div>
     <div class="team-member">
         <div class="member-info">
-            <h2>Secretary</h2>      <!-- -->
+            <h2>Secretary</h2>
             <p>Lauren Tegeler</p>                                   
         </div>
-        <img src="blank.png" alt="Secretary" />
-        <p>This is my third year doing odyessey of the Mind. I enjoy acting, writing, designing costumes and doing stage make up! </p>
+        <img src="Secretary.png" alt="Secretary" />
+        <p>This is my third year doing Odyssey of the Mind. I enjoy acting, writing, designing costumes, and doing stage makeup!</p>
     </div>
     <div class="team-member">
         <div class="member-info">
@@ -207,8 +214,9 @@
             <p>Heidi Higuera</p>
         </div>
         <img src="blank.png" alt="Historian" />
-        <p>This is my second year doing Odessey.I enjoy execiseing my creative abilites and being with friends. i also do jui-jitsu and wrestling</p>
+        <p>This is my second year doing Odyssey. I enjoy exercising my creative abilities and being with friends. I also do jiu-jitsu and wrestling.</p>
     </div>
+    <!-- 
     <div class="team-member">
         <div class="member-info">
             <h2>Coach</h2>
@@ -217,7 +225,7 @@
         <img src="blank.png" alt="Coach" />
         <p>Description about the Coach.</p>
     </div>
-  <div class="team-member">
+    <div class="team-member">
         <div class="member-info">
             <h2>Member</h2>
             <p>Name</p>
@@ -225,13 +233,21 @@
         <img src="blank.png" alt="Member" />
         <p>Description about the Member.</p>
     </div>
+    -->
 </section>
 
 <section id="odyssey">
     <h2>Odyssey of the Mind</h2>
-    <p>Blank</p>                   
+    <p>Odyssey of the Mind teaches students to harness their creativity for problem-solving, fostering confidence in facing challenges. Participants learn to apply classroom knowledge to unique, open-ended problems while developing skills in teamwork, budgeting, time management, and public speaking. This international program supports students of all learning levels, helping them grow individually and as team members, ultimately enabling them to reach their full potential.</p>                   
     <p>Visit <a href="https://odysseyofthemind.com/">Odyssey of the Mind</a> for more information.</p>
     <img src="OMER.PNG" alt="OMER Image" style="max-width: 200px;"/>
+</section>
+
+<section id="odyssey-angels">
+    <h2>Odyssey Angels</h2>
+    <p>The worldwide community often proves its ability to work together to help those suffering from a major disaster. While this generosity is important, too often those suffering in our neighborhoods get overlooked. Whether it’s an elderly woman needing help carrying her groceries, or a family struggling to pay their bills, someone needs help right in our backyards. Unfortunately, they may not receive any without the benefit of the world stage.</p>
+    <p>Visit <a href="https://www.odysseyangels.org/" target="_blank">Odyssey Angels</a> for more information.</p>
+    
 </section>
 
 <section id="find-us">
@@ -250,7 +266,7 @@
     <h2>Follow Us on Social Media</h2>
     <div class="social-media">
         <div class="social">
-            <a href="https://www.facebook.com/yourpage"><img src="Facebook Favicon.png" alt="Facebook"></a>
+         <!-- <a href="https://www.facebook.com/yourpage"><img src="Facebook Favicon.png" alt="Facebook"></a> -->
         </div>
         <div class="social">
             <a href="https://www.instagram.com/yourhandle"><img src="Insta Favicon.png" alt="Instagram"></a>
@@ -283,7 +299,6 @@
     // Smooth scroll back to top
     document.querySelector('.back-to-top').addEventListener('click', function(e) {
         e.preventDefault();
-
         document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
     });
 </script>
