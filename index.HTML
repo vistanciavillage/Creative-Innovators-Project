@@ -1,4 +1,4 @@
-<!DOCTYPE html>    
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -137,6 +137,65 @@
             margin: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em; /* Smaller header on mobile */
+            }
+            nav a {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                margin: 8px;
+            }
+            section {
+                padding: 15px;
+                margin: 5px;
+            }
+            .team-member {
+                width: 90%; /* Make team member cards more responsive */
+                margin: 10px 0;
+            }
+            .team-member img {
+                width: 150px;
+                height: 150px;
+            }
+            .social img {
+                width: 100px;
+                height: 100px;
+            }
+            footer {
+                font-size: 0.9em; /* Smaller footer text */
+            }
+            .back-to-top {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em; /* Even smaller on very small screens */
+            }
+            nav a {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            .team-member {
+                width: 100%; /* Make team cards take full width on small screens */
+            }
+            .team-member img {
+                width: 130px;
+                height: 130px;
+            }
+            footer {
+                font-size: 0.8em;
+            }
+            .back-to-top {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -170,9 +229,23 @@
 
 <section id="events">
     <h2>Events</h2>
-    <p>03/01/2024: Odessey Of the Mind Regional Competion</p>                   
-    <p>04/?/2024: Odessey Of the Mind State Finals</p>   
-    <p>05/21/2024: Odessey Of the Mind World Finals</p>                
+    <p>03/01/2024: Odyssey Of the Mind Regional Competition</p>                   
+    <p>04/?/2024: Odyssey Of the Mind State Finals</p>   
+    <p>05/21/2024: Odyssey Of the Mind World Finals</p>                
+</section>
+
+<section id="calendar">
+    <h2>Event Calendar</h2>
+    <div class="month">      
+        <ul>
+            <li class="prev">&#10094;</li>
+            <li class="next">&#10095;</li>
+            <li>
+                August<br>
+                <span style="font-size:18px">2021</span>
+            </li>
+        </ul>
+    </div>
 </section>
 
 <section id="team">
@@ -183,7 +256,7 @@
             <p>Brinley</p>
         </div>
         <img src="Brin.png" alt="President" />
-        <p>Hi i'm Brinley I started the original Lake Pleasant Odyssey of the mind club back in 2019 and have been doing it since then. I am one of the founders of the VVCIP and am currently president of the club.</p>
+        <p>Hi I'm Brinley! I started the original Lake Pleasant Odyssey of the Mind club back in 2019 and have been doing it since then. I am one of the founders of the VVCIP and am currently president of the club.</p>
     </div>
     <div class="team-member">
         <div class="member-info">
@@ -191,7 +264,7 @@
             <p>Aubrey</p>
         </div>
         <img src="aub.png" alt="Vice President" />
-        <p>Hi I am Aubrey, I have been apart of Odyssey for almost three years now. I am vice president for the VVCIP and I am so excited for the upcoming year.</p>
+        <p>Hi, I am Aubrey. I have been part of Odyssey for almost three years now. I am vice president for the VVCIP and I am so excited for the upcoming year.</p>
     </div>
     <div class="team-member">
         <div class="member-info">
@@ -217,24 +290,6 @@
         <img src="Hedi.png" alt="Historian" />
         <p>This is my second year doing Odyssey. I enjoy exercising my creative abilities and being with friends. I also do jiu-jitsu and wrestling.</p>
     </div>
-    <!-- 
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Coach</h2>
-            <p>Name</p>
-        </div>
-        <img src="blank.png" alt="Coach" />
-        <p>Description about the Coach.</p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Member</h2>
-            <p>Name</p>
-        </div>
-        <img src="blank.png" alt="Member" />
-        <p>Description about the Member.</p>
-    </div>
-    -->
 </section>
 
 <section id="odyssey">
@@ -248,15 +303,14 @@
     <h2>Odyssey Angels</h2>
     <p>The worldwide community often proves its ability to work together to help those suffering from a major disaster. While this generosity is important, too often those suffering in our neighborhoods get overlooked. Whether it’s an elderly woman needing help carrying her groceries, or a family struggling to pay their bills, someone needs help right in our backyards. Unfortunately, they may not receive any without the benefit of the world stage.</p>
     <p>Visit <a href="https://www.odysseyangels.org/" target="_blank">Odyssey Angels</a> for more information.</p>
-    
 </section>
 
 <section id="find-us">
     <h2>Where to Find Us</h2>
     <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1380.3278737457808!2d-112.32929024959566!3d33.75282402899331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b5ea8a17b1fbb%3A0x6426ef5126c4a9e0!2sThe%20Village%20at%20Vistancia!5e0!3m2!1sen!2sus!4v1728878007305!5m2!1sen!2sus" 
-        width="800" 
-        height="400" 
+        width="100%" 
+        height="300" 
         style="border:0;" 
         allowfullscreen="" 
         loading="lazy" 
@@ -267,42 +321,21 @@
     <h2>Follow Us on Social Media</h2>
     <div class="social-media">
         <div class="social">
-  <!--      <a href="https://www.facebook.com/yourpage"><img src="Facebook Favicon.png" alt="Facebook"></a>   -->
+            <img src="facebook.png" alt="Facebook">
         </div>
         <div class="social">
-  <!--      <a href="https://www.instagram.com/yourhandle"><img src="Insta Favicon.png" alt="Instagram"></a>  -->
+            <img src="twitter.png" alt="Twitter">
         </div>
         <div class="social">
-            <a href="https://url.us.m.mimecastprotect.com/s/RXGECDk2pGiv2KmAuWf0Fj78bf?domain=tiktok.com"><img src="Tiktok.png" alt="TikTok"></a>
-        </div>
-        <div class="social">
-            <a href="https://url.us.m.mimecastprotect.com/s/X43nCn5onLUO07jqT9fnFJrO2t?domain=youtube.com"><img src="yt.png" alt="YouTube"></a>
+            <img src="instagram.png" alt="Instagram">
         </div>
     </div>
 </section>
 
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:creativeinnovatorsproject@gmail.com">creativeinnovatorsproject@gmail.com</a></p>
-</section>
-
-<section id="support">
-    <h2>Support Us</h2>
-    <p>Your support is vital to our mission.</p>
-    <p>For more information, please visit our <a href="https://www.gofundme.com/yourgofundmelink" target="_blank">GoFundMe page</a>.</p>
-</section>
-
 <footer>
+    <p>&copy; 2024 Vistancia Village Creative Innovators Project. All rights reserved.</p>
     <a href="#top" class="back-to-top">Back to Top</a>
 </footer>
-
-<script>
-    // Smooth scroll back to top
-    document.querySelector('.back-to-top').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
-    });
-</script>
 
 </body>
 </html>
