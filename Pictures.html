@@ -1,0 +1,155 @@
+<!DOCTYPE html>    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vistancia Village Creative Innovators Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #D5006D; /* Dark Pink */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
+        }
+        nav {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav a {
+            margin: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
+        }
+        section {
+            padding: 20px;
+            background: #fff;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #D5006D; /* Dark Pink */
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .team-member img {
+            width: 400px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+            border-radius: 10px; /* Consistent border radius */
+        }
+        .social-media {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .social {
+            margin: 0 5px;
+        }
+        .social img {
+            width: 125px;
+            height: 125px;
+            object-fit: cover;
+        }
+        .back-to-top {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: #fff;
+            color: #D5006D; /* Dark Pink */
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .back-to-top:hover {
+            background: #D5006D; /* Dark Pink */
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
+        }
+
+        /* New CSS for Pictures Section */
+        #pictures {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping if the screen is too narrow */
+            justify-content: center; /* Center images horizontally */
+            gap: 10px; /* Adds space between images */
+            padding: 20px;
+        }
+
+        #pictures img {
+            width: 400px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            object-fit: cover; /* Ensure images cover the area without distortion */
+            border-radius: 10px; /* Rounded corners */
+        }
+    </style>
+</head>
+<body>
+
+<header id="top">
+    <h1>Photos</h1>
+</header>
+
+<section id="pictures">
+    <img src="1.png" alt="Image 1">
+    <img src="2.png" alt="Image 2">
+    <img src="3.png" alt="Image 3">
+    <img src="4.png" alt="Image 4">
+    <img src="5.png" alt="Image 5">
+    <img src="6.png" alt="Image 6">
+    <img src="7.png" alt="Image 7">
+    <img src="8.png" alt="Image 8">
+    <img src="9.png" alt="Image 9">
+    <img src="10.png" alt="Image 10">
+    <img src="11.png" alt="Image 11">
+    <img src="12.png" alt="Image 12">
+    <img src="13.png" alt="Image 13">
+    <img src="14.png" alt="Image 14">
+</section>
+
+<footer>
+    <a href="#top" class="back-to-top">Back to Top</a>
+</footer>
+
+<script>
+    // Smooth scroll back to top
+    document.querySelector('.back-to-top').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
