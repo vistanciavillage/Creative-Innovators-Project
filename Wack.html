@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vistancia Village Creative Innovators Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('grass.png'); /* Ensure you have this file */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #D5006D; /* Dark Pink */
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
+        }
+
+        /* Mole's style */
+        #mole {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            background-image: url('mole.png'); /* Ensure mole image is available */
+            background-size: cover;
+            background-position: center;
+            display: none;
+            z-index: 1000;
+        }
+
+        /* Score Display */
+        #score {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            z-index: 2000;
+        }
+
+        /* Go Back Button */
+        #go-back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #D5006D;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            z-index: 2000;
+        }
+
+        #go-back-btn:hover {
+            background-color: #bb005b;
+        }
+
+        /* Popup modal styles */
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark background to highlight text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            z-index: 9999; /* Make sure it's on top */
+        }
+
+        #popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            color: #333; /* Ensure text is dark on light background */
+        }
+
+        #popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Go Back Button -->
+<a href="index.html" id="go-back-btn">Go Back</a>
+
+<!-- Mole -->
+<div id="mole"></div>
+
+<!-- Popup Modal -->
+<div id="popup">
+    <div id="popup-content">
+        <h2>You Found a Secret!</h2>
+        <p>Wack the mole to gain points!</p>
+        <button id="popup-close-btn">Start Game</button>
+    </div>
+</div>
+
+<!-- Score Display -->
+<div id="score">Score: 0</div>
+
+<script>
+    // Popup Modal Script
+    window.onload = function() {
+        const popup = document.getElementById('popup');
+        const closeBtn = document.getElementById('popup-close-btn');
+
+        // Show the popup modal when the page loads
+        popup.classList.add('show');
+
+        // Close the popup when the button is clicked
+        closeBtn.addEventListener('click', function() {
+            popup.classList.remove('show');
+        });
+    };
+
+    // Initialize score
+    let score = 0;
+
+    // Function to generate random position for the mole
+    function generateRandomPosition() {
+        const mole = document.getElementById('mole');
+        const maxWidth = window.innerWidth - mole.offsetWidth;
+        const maxHeight = window.innerHeight - mole.offsetHeight;
+
+        const randomX = Math.random() * maxWidth;
+        const randomY = Math.random() * maxHeight;
+
+        mole.style.left = `${randomX}px`;
+        mole.style.top = `${randomY}px`;
+    }
+
+    // Function to show the mole
+    function showMole() {
+        const mole = document.getElementById('mole');
+        generateRandomPosition();
+        mole.style.display = 'block';
+
+        // Set a timeout to hide the mole after 1 second
+        setTimeout(() => {
+            mole.style.display = 'none'; // Hide mole after 1 second
+        }, 1000); // Mole stays visible for 1 second
+    }
+
+    // Mole click event to increase score
+    document.getElementById('mole').addEventListener('click', function() {
+        score++; // Increment score on mole click
+        document.getElementById('score').textContent = `Score: ${score}`;
+    });
+
+    // Show mole every 2 seconds
+    setInterval(showMole, 2000);
+</script>
+
+</body>
+</html>
