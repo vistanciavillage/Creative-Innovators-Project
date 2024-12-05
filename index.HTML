@@ -137,12 +137,25 @@
             margin: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+		/* Remove all link styling */
+.hidden-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the color from the surrounding text */
+    display: inline; /* Make sure the link behaves like a regular inline element */
+}
+
+/* Optionally, you can add a subtle hover effect if you'd like */
+.hidden-link:hover {
+    color: inherit; /* Keep the same color on hover */
+    background-color: transparent; /* No background change */
+}
+
     </style>
 </head>
 <body>
 
 <header id="top">
-    <h1>Vistancia Village Creative Innovators Project</h1>
+    <h1>Vistancia Village Creative Innovators <a href="Enzo2048.html" class="hidden-link">P</a>roject</h1>
     <h2></h2>
     <nav>
         <a href="#about">About Us</a>
