@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo's 2048</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #faf8ef; /* Default background color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            flex-direction: column; /* Stack elements vertically */
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        #score, #highscore {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        #game {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(4, 100px);
+            gap: 10px;
+            background-color: black;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .tile {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: white;
+            border-radius: 5px;
+            background-color: #333; /* Default background for empty tiles */
+        }
+        .tile-2 { background-color: #eee4da; }
+        .tile-4 { background-color: #de9e9e; }
+        .tile-8 { background-color: #f7b32c; }
+        .tile-16 { background-color: #ff7f50; }
+        .tile-32 { background-color: #ff6347; }
+        .tile-64 { background-color: #ff4500; }
+        .tile-128 { background-color: #ff8c00; }
+        .tile-256 { background-color: #ffd700; }
+        .tile-512 { background-color: #adff2f; }
+        .tile-1024 { background-color: #32cd32; }
+        .tile-2048 { background-color: #008000; }
+        .tile-4096 { background-color: #00bfff; }
+        .tile-8192 { background-color: #1e90ff; }
+        .tile-16384 { background-color: #ff1493; }
+        .tile-32768 { background-color: #c71585; }
+        #rewind-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+
+        /* Popup modal styles */
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        #popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Always-visible back-to-home button */
+        #back-to-home {
+            position: fixed;
+            top: 20px; /* Space from the top */
+            left: 20px; /* Space from the left */
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            z-index: 100; /* Ensure it's above other content */
+        }
+
+        #popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Enzo's 2048</h1>
+<div id="highscore">High Score: 0</div>
+<div id="score">Score: 0</div>
+<div id="game"></div>
+<button id="rewind-button" onclick="resetGame()">Try Again</button>
+
+<!-- Popup Modal -->
+<div id="popup">
+    <div id="popup-content">
+        <h2>You Found a Secret!</h2>
+        <p>Try to reach 2048 and beyond. Good luck!</p>
+        <button onclick="closePopup()">Start Game</button>
+    </div>
+</div>
+
+<!-- Always-visible back-to-home button -->
+<button id="back-to-home" onclick="window.location.href='index.html'">Back to Home</button>
+
+<script>
+    const gameArea = document.getElementById('game');
+    const rewindButton = document.getElementById('rewind-button');
+    const scoreDisplay = document.getElementById('score');
+    const highscoreDisplay = document.getElementById('highscore');
+    const popup = document.getElementById('popup');
+    let board = Array(4).fill(null).map(() => Array(4).fill(0));
+    let score = 0;
+    let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
+
+    function initGame() {
+        addTile();
+        addTile();
+        updateBoard();
+    }
+
+    function addTile() {
+        let emptyTiles = [];
+        for (let r = 0; r < 4; r++) {
+            for (let c = 0; c < 4; c++) {
+                if (board[r][c] === 0) {
+                    emptyTiles.push({ r, c });
+                }
+            }
+        }
+        if (emptyTiles.length > 0) {
+            let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+            board[r][c] = Math.random() < 0.9 ? 2 : 4;
+        }
+    }
+
+    function updateBoard() {
+        gameArea.innerHTML = '';
+        let highestTile = 0;
+
+        for (let r = 0; r < 4; r++) {
+            for (let c = 0; c < 4; c++) {
+                let tile = document.createElement('div');
+                tile.classList.add('tile', `tile-${board[r][c]}`);
+                tile.textContent = board[r][c] > 0 ? board[r][c] : '';
+                gameArea.appendChild(tile);
+
+                // Update highest tile
+                if (board[r][c] > highestTile) {
+                    highestTile = board[r][c];
+                }
+            }
+        }
+
+        // Set body background color to the highest tile color
+        document.body.style.backgroundColor = getTileColor(highestTile);
+        scoreDisplay.textContent = `Score: ${score}`; // Update score display
+        highscoreDisplay.textContent = `High Score: ${highScore}`; // Update high score display
+
+        // Check for game over
+        if (isGameOver()) {
+            showRewindButton();
+            updateHighScore();
+        }
+    }
+
+    function getTileColor(value) {
+        switch (value) {
+            case 2: return '#eee4da';
+            case 4: return '#de9e9e';
+            case 8: return '#f7b32c';
+            case 16: return '#ff7f50';
+            case 32: return '#ff6347';
+            case 64: return '#ff4500';
+            case 128: return '#ff8c00';
+            case 256: return '#ffd700';
+            case 512: return '#adff2f';
+            case 1024: return '#32cd32';
+            case 2048: return '#008000';
+            case 4096: return '#00bfff';
+            case 8192: return '#1e90ff';
+            case 16384: return '#ff1493';
+            case 32768: return '#c71585';
+            default: return '#faf8ef'; // Default background color
+        }
+    }
+
+    function slide(row) {
+        let newRow = row.filter(val => val !== 0);
+        for (let i = 0; i < newRow.length - 1; i++) {
+            if (newRow[i] === newRow[i + 1]) {
+                newRow[i] *= 2;
+                score += newRow[i]; // Increment score
+                newRow[i + 1] = 0;
+            }
+        }
+        newRow = newRow.filter(val => val !== 0);
+        while (newRow.length < 4) {
+            newRow.push(0);
+        }
+        return newRow;
+    }
+
+    function move(direction) {
+        let moved = false;
+        if (direction === 'left') {
+            for (let r = 0; r < 4; r++) {
+                let oldRow = board[r].slice();
+                board[r] = slide(board[r]);
+                if (JSON.stringify(oldRow) !== JSON.stringify(board[r])) {
+                    moved = true;
+                }
+            }
+        } else if (direction === 'right') {
+            for (let r = 0; r < 4; r++) {
+                let oldRow = board[r].slice();
+                board[r] = slide(board[r].reverse()).reverse();
+                if (JSON.stringify(oldRow) !== JSON.stringify(board[r])) {
+                    moved = true;
+                }
+            }
+        } else if (direction === 'up') {
+            for (let c = 0; c < 4; c++) {
+                let oldCol = board.map(row => row[c]);
+                let newCol = slide(oldCol);
+                for (let r = 0; r < 4; r++) {
+                    board[r][c] = newCol[r];
+                }
+                if (JSON.stringify(oldCol) !== JSON.stringify(newCol)) {
+                    moved = true;
+                }
+            }
+        } else if (direction === 'down') {
+            for (let c = 0; c < 4; c++) {
+                let oldCol = board.map(row => row[c]);
+                let newCol = slide(oldCol.reverse()).reverse();
+                for (let r = 0; r < 4; r++) {
+                    board[r][c] = newCol[r];
+                }
+                if (JSON.stringify(oldCol) !== JSON.stringify(newCol)) {
+                    moved = true;
+                }
+            }
+        }
+        if (moved) {
+            addTile();
+            updateBoard();
+        }
+    }
+
+    function isGameOver() {
+        for (let r = 0; r < 4; r++) {
+            for (let c = 0; c < 4; c++) {
+                if (board[r][c] === 0) return false; // Still empty tiles
+                if (c < 3 && board[r][c] === board[r][c + 1]) return false; // Horizontal match
+                if (r < 3 && board[r][c] === board[r + 1][c]) return false; // Vertical match
+            }
+        }
+        return true; // No moves left
+    }
+
+    function showRewindButton() {
+        rewindButton.style.display = 'block';
+    }
+
+    function updateHighScore() {
+        if (score > highScore) {
+            highScore = score;
+            localStorage.setItem('highScore', highScore); // Save to localStorage
+        }
+    }
+
+    function resetGame() {
+        location.reload(); // Refresh the page
+    }
+
+    function closePopup() {
+        popup.classList.remove('show');
+        initGame(); // Start the game after closing the popup
+    }
+
+    document.addEventListener('keydown', (event) => {
+        switch (event.key) {
+            case 'ArrowLeft':
+                move('left');
+                break;
+            case 'ArrowRight':
+                move('right');
+                break;
+            case 'ArrowUp':
+                move('up');
+                break;
+            case 'ArrowDown':
+                move('down');
+                break;
+        }
+    });
+
+    // Show the popup on page load
+    window.onload = () => {
+        popup.classList.add('show');
+    };
+</script>
+
+</body>
+</html>
