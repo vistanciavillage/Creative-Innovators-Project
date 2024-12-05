@@ -122,61 +122,6 @@
     <h1>50 Odyssey of the Mind Spontaneous</h1>
 </header>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vistancia Village Creative Innovators Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
-        }
-        section {
-            padding: 20px;
-            margin: 10px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
-        }
-        ol {
-            list-style-type: decimal; /* Standard numbering */
-            padding-left: 20px;
-            line-height: 1.6;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>50 Odyssey of the Mind Spontaneous Problems</h1>
-</header>
-
 <section id="pictures">
     <ul>
         <li>You discover a door that leads to a world made entirely of candy. What do you do?</li>
@@ -236,6 +181,21 @@
 </body>
 </html>
 
+
+<footer>
+    <a href="Index.HTML">Go back to main page</a>
+</footer>
+
+<script>
+    // Smooth scroll back to top
+    document.querySelector('.back-to-top').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
 
 <footer>
     <a href="Index.HTML">Go back to main page</a>
