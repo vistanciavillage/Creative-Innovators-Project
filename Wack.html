@@ -1,22 +1,55 @@
-<!DOCTYPE html>
+<!DOCTYPE html>    
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vistancia Village Creative Innovators Project</title>
 	<link rel="icon" href="Logo.ico">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('grass.png'); /* Ensure you have this file */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: white;
+            background-color: #f4f4f4;
         }
-
+        header {
+            background: #D5006D; /* Dark Pink */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
+        }
+        nav {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav a {
+            margin: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
+        }
+        section {
+            padding: 20px;
+            background: #fff;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
+            text-align: center;
+        }
         footer {
             text-align: center;
             padding: 10px 0;
@@ -27,165 +60,139 @@
             width: 100%;
             box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
         }
-
-        /* Mole's style */
-        #mole {
-            position: fixed;
-            width: 150px;
-            height: 150px;
-            background-image: url('mole.png'); /* Ensure mole image is available */
-            background-size: cover;
-            background-position: center;
-            display: none;
-            z-index: 1000;
-        }
-
-        /* Score Display */
-        #score {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5em;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 10px 20px;
+        img {
+            max-width: 100%;
+            height: auto;
             border-radius: 10px;
-            z-index: 2000;
         }
-
-        /* Go Back Button */
-        #go-back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #D5006D;
-            color: #fff;
-            font-size: 1.2em;
+        .team-member img {
+            width: 400px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+            border-radius: 10px; /* Consistent border radius */
+        }
+        .social-media {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .social {
+            margin: 0 5px;
+        }
+        .social img {
+            width: 125px;
+            height: 125px;
+            object-fit: cover;
+        }
+        .back-to-top {
+            display: inline-block;
             padding: 10px 20px;
             border-radius: 25px;
+            background: #fff;
+            color: #D5006D; /* Dark Pink */
             text-decoration: none;
-            transition: background-color 0.3s;
-            z-index: 2000;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .back-to-top:hover {
+            background: #D5006D; /* Dark Pink */
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
         }
 
-        #go-back-btn:hover {
-            background-color: #bb005b;
-        }
-
-        /* Popup modal styles */
-        #popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dark background to highlight text */
+        /* New CSS for Pictures Section */
+        #pictures {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            z-index: 9999; /* Make sure it's on top */
+            flex-wrap: wrap; /* Allow wrapping if the screen is too narrow */
+            justify-content: center; /* Center images horizontally */
+            gap: 10px; /* Adds space between images */
+            padding: 20px;
         }
 
-        #popup-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            width: 300px;
-            color: #333; /* Ensure text is dark on light background */
-        }
-
-        #popup.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #popup button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        #pictures img {
+            width: 400px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            object-fit: cover; /* Ensure images cover the area without distortion */
+            border-radius: 10px; /* Rounded corners */
         }
     </style>
 </head>
 <body>
 
-<!-- Go Back Button -->
-<a href="index.html" id="go-back-btn">Go Back</a>
+<header id="top">
+    <h1>50 Odyssey of the Mind Spontaneous</h1>
+</header>
 
-<!-- Mole -->
-<div id="mole"></div>
+<section id="pictures">
+    <ul>
+        <li>You discover a door that leads to a world made entirely of candy. What do you do?</li>
+        <li>If animals could talk, which one would be the funniest, and what would it say?</li>
+        <li>You are stranded on a desert island and can only bring three items. What would you bring and why?</li>
+        <li>You invent a new holiday. What is it called, and how is it celebrated?</li>
+        <li>A tree in your yard can now talk. What does it say to you, and how do you respond?</li>
+        <li>If you could switch lives with any famous person for a day, who would it be and why?</li>
+        <li>You find a magic mirror that shows your future. What does it show, and how do you feel about it?</li>
+        <li>You get to design a new planet. What does it look like, and what kind of creatures live there?</li>
+        <li>If your shoes could talk, what would they say about the places they’ve been?</li>
+        <li>You are an inventor who can create any object. What is your invention, and how does it help people?</li>
+        <li>Your pet can now speak. What does it tell you about its life?</li>
+        <li>If you could talk to one kind of animal, which one would you choose, and what would you ask it?</li>
+        <li>Imagine there are no computers or phones in the world. How would people stay connected?</li>
+        <li>You find a book that can answer any question. What’s the first question you ask?</li>
+        <li>You are the leader of a kingdom that only has one rule: kindness. How do you ensure everyone follows it?</li>
+        <li>You discover a new color. What would you call it, and how would you describe it to others?</li>
+        <li>A robot is hired to work in your school. What job would you give it?</li>
+        <li>You could live in any time period. Where and when would you live, and what would you do there?</li>
+        <li>A spaceship lands in your backyard. Who gets out, and what happens next?</li>
+        <li>You can create a new food. What’s it made of, and why is it so special?</li>
+        <li>You suddenly grow wings. What do you do with your new ability?</li>
+        <li>A new animal is discovered. Describe it, and explain where it lives.</li>
+        <li>If the Earth suddenly stopped spinning, what would happen?</li>
+        <li>You find a suitcase full of treasure, but there's one problem: it’s locked. What do you do to open it?</li>
+        <li>You are given the ability to read minds for one day. How would you use this power?</li>
+        <li>You are tasked with designing a new school. What makes it different from the schools today?</li>
+        <li>A giant cloud is about to land on Earth. What should everyone do to prepare?</li>
+        <li>You can teleport anywhere. Where would you go first, and why?</li>
+        <li>You are given three wishes, but you cannot use them for yourself. What do you wish for?</li>
+        <li>A character in your favorite book is now real. How does it change your life?</li>
+        <li>You find a hidden cave, and inside it is an ancient treasure chest. What do you do next?</li>
+        <li>You can only use one word to describe yourself. What is it and why?</li>
+        <li>You discover a secret passage in your school. Where does it lead?</li>
+        <li>You are a superhero with the power to control weather. How do you use your power to help others?</li>
+        <li>You could only live in one season for the rest of your life. Which one would you pick and why?</li>
+        <li>You are on a quest to find the last piece of pizza in the world. What’s your plan?</li>
+        <li>A famous explorer wants to team up with you for an adventure. What do you explore together?</li>
+        <li>You can travel to any fictional world for one day. Where do you go, and what do you do?</li>
+        <li>You can only speak in rhymes for a day. How do you handle everyday situations?</li>
+        <li>You are a time traveler. What year would you visit, and what would you do there?</li>
+        <li>A mysterious box appears in front of you. What do you do with it, and what’s inside?</li>
+        <li>You are hired as the world's first "dream architect." What kind of dreams do you design?</li>
+        <li>You find a magical pen that makes anything you draw come to life. What do you draw first?</li>
+        <li>You discover a world where everything is upside down. How do you live in this new world?</li>
+        <li>You are given the power to create one new rule for the entire world. What is it?</li>
+        <li>You can speak to the stars. What do they say to you, and what do you ask them?</li>
+        <li>Your favorite cartoon character comes to life. What do you do together?</li>
+        <li>You’re given the power to shrink any object. What do you shrink first and why?</li>
+        <li>You’ve just won a contest to build the first treehouse in space. What does it look like?</li>
+        <li>You are the ruler of a world where everyone has the same dream. What’s the dream, and what happens when they wake up?</li>
+    </ul>
+</section>
 
-<!-- Popup Modal -->
-<div id="popup">
-    <div id="popup-content">
-        <h2>You Found a Secret!</h2>
-        <p>Wack the mole to gain points!</p>
-        <button id="popup-close-btn">Start Game</button>
-    </div>
-</div>
 
-<!-- Score Display -->
-<div id="score">Score: 0</div>
+</body>
+</html>
+
+
+<footer>
+    <a href="Index.HTML">Go back to main page</a>
+</footer>
 
 <script>
-    // Popup Modal Script
-    window.onload = function() {
-        const popup = document.getElementById('popup');
-        const closeBtn = document.getElementById('popup-close-btn');
-
-        // Show the popup modal when the page loads
-        popup.classList.add('show');
-
-        // Close the popup when the button is clicked
-        closeBtn.addEventListener('click', function() {
-            popup.classList.remove('show');
-        });
-    };
-
-    // Initialize score
-    let score = 0;
-
-    // Function to generate random position for the mole
-    function generateRandomPosition() {
-        const mole = document.getElementById('mole');
-        const maxWidth = window.innerWidth - mole.offsetWidth;
-        const maxHeight = window.innerHeight - mole.offsetHeight;
-
-        const randomX = Math.random() * maxWidth;
-        const randomY = Math.random() * maxHeight;
-
-        mole.style.left = `${randomX}px`;
-        mole.style.top = `${randomY}px`;
-    }
-
-    // Function to show the mole
-    function showMole() {
-        const mole = document.getElementById('mole');
-        generateRandomPosition();
-        mole.style.display = 'block';
-
-        // Set a timeout to hide the mole after 1 second
-        setTimeout(() => {
-            mole.style.display = 'none'; // Hide mole after 1 second
-        }, 1000); // Mole stays visible for 1 second
-    }
-
-    // Mole click event to increase score
-    document.getElementById('mole').addEventListener('click', function() {
-        score++; // Increment score on mole click
-        document.getElementById('score').textContent = `Score: ${score}`;
+    // Smooth scroll back to top
+    document.querySelector('.back-to-top').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
     });
-
-    // Show mole every 2 seconds
-    setInterval(showMole, 2000);
 </script>
 
 </body>
