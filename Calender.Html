@@ -1,56 +1,68 @@
-<!DOCTYPE html>    
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vistancia Village Creative Innovators Project</title>
-	<link rel="icon" href="Logo.ico">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
-        }
-        nav {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        nav a {
-            margin: 10px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
-        }
-        section {
-            padding: 20px;
-            background: #fff;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
-            text-align: center;
-        }
-        footer {
+<style>
+<link rel="icon" href="Logo.ico">
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #D5006D;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #D5006D;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #D5006D;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #D5006D;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #D5006D;
+  color: white !important
+}
+
+footer {
             text-align: center;
             padding: 10px 0;
             background: #D5006D; /* Dark Pink */
@@ -59,272 +71,369 @@
             bottom: 0;
             width: 100%;
             box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .team-member img {
-            width: 200px; /* Fixed width */
-            height: 200px; /* Fixed height */
-            object-fit: cover; /* Cover to maintain aspect ratio */
-            border-radius: 10px; /* Consistent border radius */
-        }
-        .social-media {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .social {
-            margin: 0 5px;
-        }
-        .social img {
-            width: 125px;
-            height: 125px;
-            object-fit: cover;
-        }
-        .back-to-top {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: #fff;
-            color: #D5006D; /* Dark Pink */
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-        }
-        .back-to-top:hover {
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
-        }
-
-        /* New CSS for Team Section */
-        #team {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        #team h2 {
-            text-align: center;
-            margin-bottom: 20px; /* Adds space below the title */
-        }
-
-        .team-member {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 200px; /* Adjust width as needed */
-            margin: 15px;
-            background: #fff;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .member-info {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        #odyssey-angels {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-		/* Remove all link styling */
-.hidden-link {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit the color from the surrounding text */
-    display: inline; /* Make sure the link behaves like a regular inline element */
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+  .weekdays li, .days li {width: 13.1%;}
 }
 
-/* Optionally, you can add a subtle hover effect if you'd like */
-.hidden-link:hover {
-    color: inherit; /* Keep the same color on hover */
-    background-color: transparent; /* No background change */
+@media screen and (max-width: 420px) {
+  .weekdays li, .days li {width: 12.5%;}
+  .days li .active {padding: 2px;}
 }
 
-    </style>
+@media screen and (max-width: 290px) {
+  .weekdays li, .days li {width: 12.2%;}
+}
+</style>
 </head>
 <body>
 
-<header id="top">
-    <h1>Vistancia Village Creative Innovators <a href="Enzo2048.html" class="hidden-link">P</a>roject</h1>
-    <h2></h2>
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#mission">Our Mission</a>
-        <a href="#events">Events</a>
-        <a href="#team">Meet the Team</a>
-        <a href="#odyssey">Odyssey of the Mind</a>
-        <a href="#odyssey-angels">Odyssey Angels</a> <!-- Updated link -->
-        <a href="#find-us">Where to Find Us</a>
-        <a href="#social-media">Follow Us on Social Media</a>
-        <a href="#contact">Contact Us</a>
-        <a href="#support">Support Us</a>
-        <a href="#photo">Photos</a>
-    </nav>
-</header>
+<div class="month">      
+  <ul>
 
-<section id="about">
-    <h2>About Us</h2>
-    <br>
-    <a href="Aboutus.html">Click here to learn more</a> <!-- Link to AboutUs.html -->
-    </p>                   
-</section>
+    <li>
+      December<br>
+      <span style="font-size:18px">2024</span>
+    </li>
+  </ul>
+</div>
 
-<section id="mission">
-    <h2>Our Mission</h2>
-    <p>Fostering innovation, resilience, creativity, and teamwork to inspire youth to be part of the solution for today's challenges in our community and the world at large.</p>                   
-</section>
+<ul class="weekdays">
+  <li>Su</li>
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+</ul>
 
-<section id="events">
-    <h2>2024-2025 Schedule</h2>
-    <a href="Calender.html">Click here to veiw or schedule for 2024-2025</a>            
-</section>
-
-<section id="team">
-    <br>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>President</h2>
-            <p>Brinley</p>
-        </div>
-        <img src="Brin.png" alt="President" />
-        <p>Hi i'm Brinley I started the original Lake Pleasant Odyssey of the mind club back in 2019 and have been doing it since then. I am one of the founders of the VVCIP and am currently president of the club.</p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Vice President</h2>
-            <p>Aubrey</p>
-        </div>
-        <img src="aub.png" alt="Vice President" />
-        <p>Hi I am Aubrey, I have been apart of Odyssey for almost three years now. I am vice president for the VVCIP and I am so excited for the upcoming year.</p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Treasurer</h2>
-            <p>Enzo Tegeler</p>
-        </div>
-        <img src="Enzo.png" alt="Treasurer" />
-        <p>I joined the club in 2022 during 8th grade. I specialize in engineering related <a href="wack.html" class="hidden-link">fields</a>. When I graduate, I plan on becoming an Aerospace Engineer.</h1></p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Secretary</h2>
-            <p>Lauren Tegeler</p>                                   
-        </div>
-        <img src="Secretary.png" alt="Secretary" />
-        <p>This is my third year doing Odyssey of the Mind. I enjoy acting, writing, designing costumes, and doing stage makeup!</p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Historian</h2>
-            <p>Heidi Higuera</p>
-        </div>
-        <img src="Hedi.png" alt="Historian" />
-        <p>This is my second year doing Odyssey. I enjoy exercising my creative abilities and being with friends. I also do jiu-jitsu and wrestling.</p>
-    </div>
-    <!-- 
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Coach</h2>
-            <p>Name</p>
-        </div>
-        <img src="blank.png" alt="Coach" />
-        <p>Description about the Coach.</p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Member</h2>
-            <p>Name</p>
-        </div>
-        <img src="blank.png" alt="Member" />
-        <p>Description about the Member.</p>
-    </div>
-    -->
-</section>
-
-<section id="odyssey">
-    <h2>Odyssey of the Mind</h2>
-    <p>Odyssey of the Mind teaches students to harness their creativity for problem-solving, fostering confidence in facing challenges. Participants learn to apply classroom knowledge to unique, open-ended problems while developing skills in teamwork, budgeting, time management, and public speaking. This international program supports students of all learning levels, helping them grow individually and as team members, ultimately enabling them to reach their full potential.</p>                   
-    <p>Visit <a href="https://odysseyofthemind.com/">Odyssey of the Mind</a> for more information.</p>
-    <p> <a href="Spon.html">Click here for 50 Spontanious problem examples</a>
-    <br>
-    <img src="OMER.PNG" alt="OMER Image" style="max-width: 200px;"/>
-</section>
-
-<section id="odyssey-angels">
-    <h2>Odyssey Angels</h2>
-    <p>The worldwide community often proves its ability to work together to help those suffering from a major disaster. While this generosity is important, too often those suffering in our neighborhoods get overlooked. Whether it’s an elderly woman needing help carrying her groceries, or a family struggling to pay their bills, someone needs help right in our backyards. Unfortunately, they may not receive any without the benefit of the world stage.</p>
-    <p>Visit <a href="https://www.odysseyangels.org/" target="_blank">Odyssey Angels</a> for more information.</p>
-	
-
-</section>
-
-<section id="photo">
-    <h2>Photos</h2>
-       <p><a href="Pictures.html">Click here to view our photos</a></p>
-
-</section>
+<ul class="days">  
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li><span class="active">4: Practice</span></li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+  <li>9</li>
+  <li>10</li>
+  <li><span class="active">11: Practice</span></li>
+  <li>12</li>
+  <li>13</li>
+  <li>14</li>
+  <li>15</li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+  <li>21</li>
+  <li>22</li>
+  <li>23</li>
+  <li>24</li>
+  <li>25</li>
+  <li>26</li>
+  <li>27</li>
+  <li>28</li>
+  <li>29</li>
+  <li>30</li>
+  <li>31</li>
+</ul>
 
 
-<section id="find-us">
-    <h2>Where to Find Us</h2>
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1380.3278737457808!2d-112.32929024959566!3d33.75282402899331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b5ea8a17b1fbb%3A0x6426ef5126c4a9e0!2sThe%20Village%20at%20Vistancia!5e0!3m2!1sen!2sus!4v1728878007305!5m2!1sen!2sus" 
-        width="800" 
-        height="400" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>
+</body>
 
-<section id="social-media">
-    <h2>Follow Us on Social Media</h2>
-    <div class="social-media">
-        <div class="social">
-  <!--      <a href="https://www.facebook.com/yourpage"><img src="Facebook Favicon.png" alt="Facebook"></a>   -->
-        </div>
-        <div class="social">
-        <a href="https://url.us.m.mimecastprotect.com/s/iAMIC68vLniEMnGVcpfkI5Uyd1?domain=instagram.com"><img src="Insta Favicon.png" alt="Instagram"></a> 
-        </div>
-        <div class="social">
-            <a href="https://url.us.m.mimecastprotect.com/s/RXGECDk2pGiv2KmAuWf0Fj78bf?domain=tiktok.com"><img src="Tiktok.png" alt="TikTok"></a>
-        </div>
-        <div class="social">
-            <a href="https://url.us.m.mimecastprotect.com/s/X43nCn5onLUO07jqT9fnFJrO2t?domain=youtube.com"><img src="yt.png" alt="YouTube"></a>
-        </div>
-    </div>
-</section>
+<body>
 
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:creativeinnovatorsproject@gmail.com">creativeinnovatorsproject@gmail.com</a></p>
-</section>
+<div class="month">      
+  <ul>
 
-<section id="support">
-    <h2>Support Us</h2>
-    <p>Your support is vital to our mission.</p>
-    <p>For more information, please visit our <a href="https://www.gofundme.com/yourgofundmelink" target="_blank">GoFundMe page</a>.</p>
-</section>
+    <li>
+      January<br>
+      <span style="font-size:18px">2025</span>
+    </li>
+  </ul>
+</div>
 
+<ul class="weekdays">
+  <li>we</li>
+  <li>th</li>
+  <li>fr</li>
+  <li>sa</li>
+  <li>su</li>
+  <li>mo</li>
+  <li>tu</li>
+</ul>
+
+<ul class="days">  
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+  <li>9</li>
+  <li>10</li>
+  <li>11</li>
+  <li>12</li>
+  <li>13</li>
+  <li>14</li>
+  <li><span class="active">15: Practice</span></li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+  <li>21</li>
+  <li><span class="active">22: Practice</span></li>
+  <li>23</li>
+  <li>24</li>
+  <li>25</li>
+  <li>26</li>
+  <li>27</li>
+  <li>28</li>
+  <li><span class="active">29: Practice</span></li>
+  <li>30</li>
+  <li>31</li>
+</ul>
+</body>
+
+
+
+
+<body>
+
+<div class="month">      
+  <ul>
+
+    <li>
+      Febuary<br>
+      <span style="font-size:18px">2025</span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days">  
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li><span class="active">5: practice</span></li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+  <li>9</li>
+  <li>10</li>
+  <li>11</li>
+  <li>12</li>
+  <li>13</li>
+  <li>14</li>
+  <li>15</li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li><span class="active">19: practice</span></li>
+  <li>20</li>
+  <li>21</li>
+  <li>22</li>
+  <li>23</li>
+  <li>24</li>
+  <li>25</li>
+  <li><span class="active">26: practice</span></li>
+  <li>27</li>
+  <li>28</li>
+  <li>29</li>
+  <li>30</li>
+  <li>31</li>
+</ul>
+</body>
+
+
+<body>
+
+<div class="month">      
+  <ul>
+
+    <li>
+      March<br>
+      <span style="font-size:18px">2025</span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days">  
+  <li><span class="active">1: OM regional Competion</span></li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li><span class="active">10: practice</span></li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+  <li>9</li>
+  <li>10</li>
+  <li>11</li>
+  <li><span class="active">12: practice</span></li>
+  <li>13</li>
+  <li>14</li>
+  <li>15</li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+  <li>21</li>
+  <li>22</li>
+  <li>23</li>
+  <li>24</li>
+  <li>25</li>
+  <li><span class="active">26: practice</span></li>
+  <li>27</li>
+  <li>28</li>
+  <li>29</li>
+  <li>30</li>
+  <li>31</li>
+</ul>
+</body>
+
+<body>
+
+<div class="month">      
+  <ul>
+
+    <li>
+      April<br>
+      <span style="font-size:18px">2025</span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days">  
+  <li>1</li>
+  <li><span class="active">2: practice</span></li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+  <li><span class="active">9: practice</span></li>
+  <li>10</li>
+  <li>11</li>
+  <li>12</li>
+  <li>13</li>
+  <li>14</li>
+  <li>15</li>
+  <li><span class="active">16: practice</span></li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+  <li>21</li>
+  <li>22</li>
+  <li><span class="active">23: practice</span></li>
+  <li>24</li>
+  <li>25</li>
+  <li>26</li>
+  <li>27</li>
+  <li>28</li>
+  <li>29</li>
+  <li><span class="active">30: practice</span></li>
+  </ul>
+</body>
+
+
+<body>
+
+<div class="month">      
+  <ul>
+
+    <li>
+      May<br>
+      <span style="font-size:18px">2025</span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days">  
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  <li><span class="active">10: practice</span></li>
+  <li>8</li>
+  <li>9</li>
+  <li>10</li>
+  <li>11</li>
+  <li>12</li>
+  <li>13</li>
+  <li><span class="active">10: practice</span></li>
+  <li>15</li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+  <li><span class="active">21: OM World Finals</span></li>
+  <li>22</li>
+  <li>23</li>
+  <li>24</li>
+  <li>25</li>
+  <li>26</li>
+  <li>27</li>
+  <li>28</li>
+  <li>29</li>
+  <li>30</li>
+  <li>31</li>
+</ul>
+</body>
 <footer>
-    <a href="#top" class="back-to-top">Back to Top</a>
+    <a href="Index.HTML">Go back to main page</a>
 </footer>
-
-<script>
-    // Smooth scroll back to top
-    document.querySelector('.back-to-top').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
-    });
-</script>
+</html>
