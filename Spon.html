@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vistancia Village Creative Innovators Project</title>
+    <link rel="icon" href="Logo.ico">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -103,16 +104,57 @@
         #pictures {
             display: flex;
             flex-wrap: wrap; /* Allow wrapping if the screen is too narrow */
-            justify-content: center; /* Center images horizontally */
-            gap: 10px; /* Adds space between images */
+            justify-content: center; /* Center content horizontally */
+            gap: 10px; /* Adds space between items */
             padding: 20px;
         }
 
-        #pictures img {
-            width: 400px; /* Fixed width */
-            height: 400px; /* Fixed height */
-            object-fit: cover; /* Ensure images cover the area without distortion */
-            border-radius: 10px; /* Rounded corners */
+        #pictures ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #pictures li {
+            font-size: 1.2em; /* Adjust font size for readability */
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* Media queries for responsiveness */
+        @media screen and (max-width: 1024px) {
+            header {
+                font-size: 2em; /* Smaller header font size on medium screens */
+            }
+            #pictures li {
+                font-size: 1.1em; /* Slightly smaller text on tablets */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            header {
+                font-size: 1.8em; /* Smaller font on tablets */
+            }
+            #pictures li {
+                font-size: 1em; /* Smaller text on tablets */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header {
+                font-size: 1.5em; /* Smaller header font size for mobile */
+            }
+            #pictures li {
+                font-size: 0.9em; /* Smaller text for mobile screens */
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            header {
+                font-size: 1.2em; /* Very small header font size for smaller screens */
+            }
+            #pictures li {
+                font-size: 0.8em; /* Smallest text for very small screens */
+            }
         }
     </style>
 </head>
@@ -176,26 +218,6 @@
         <li>You are the ruler of a world where everyone has the same dream. What’s the dream, and what happens when they wake up?</li>
     </ul>
 </section>
-
-
-</body>
-</html>
-
-
-<footer>
-    <a href="Index.HTML">Go back to main page</a>
-</footer>
-
-<script>
-    // Smooth scroll back to top
-    document.querySelector('.back-to-top').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
-    });
-</script>
-
-</body>
-</html>
 
 <footer>
     <a href="Index.HTML">Go back to main page</a>
