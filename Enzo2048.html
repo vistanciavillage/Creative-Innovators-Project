@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enzo's 2048</title>
-	<link rel="icon" href="Logo.ico">
+    <link rel="icon" href="Logo.ico">
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #faf8ef; /* Default background color */
+            background-color: #faf8ef;
             font-family: Arial, sans-serif;
             margin: 0;
             flex-direction: column; /* Stack elements vertically */
         }
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
             color: #333;
         }
+
         #score, #highscore {
             font-size: 1.5em;
             margin-bottom: 10px;
         }
+
         #game {
             display: grid;
             grid-template-columns: repeat(4, 100px);
@@ -34,6 +37,7 @@
             padding: 10px;
             border-radius: 10px;
         }
+
         .tile {
             width: 100px;
             height: 100px;
@@ -45,6 +49,8 @@
             border-radius: 5px;
             background-color: #333; /* Default background for empty tiles */
         }
+
+        /* Different tile colors for each value */
         .tile-2 { background-color: #eee4da; }
         .tile-4 { background-color: #de9e9e; }
         .tile-8 { background-color: #f7b32c; }
@@ -60,6 +66,7 @@
         .tile-8192 { background-color: #1e90ff; }
         .tile-16384 { background-color: #ff1493; }
         .tile-32768 { background-color: #c71585; }
+
         #rewind-button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -124,6 +131,114 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 1024px) {
+            h1 {
+                font-size: 2em; /* Smaller title font size on tablets */
+            }
+
+            #score, #highscore {
+                font-size: 1.2em; /* Adjust score font size on tablets */
+            }
+
+            #game {
+                grid-template-columns: repeat(4, 80px); /* Smaller grid tiles on tablets */
+                grid-template-rows: repeat(4, 80px);
+                gap: 8px;
+            }
+
+            .tile {
+                width: 80px;
+                height: 80px;
+                font-size: 1.5em; /* Smaller font for tiles */
+            }
+
+            #rewind-button {
+                font-size: 1em; /* Smaller button text */
+                padding: 8px 16px;
+            }
+
+            #popup-content {
+                width: 80%; /* Larger popup width on tablets */
+            }
+
+            #back-to-home {
+                font-size: 1em; /* Smaller button font size */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.8em; /* Further reduce title font size on smaller screens */
+            }
+
+            #score, #highscore {
+                font-size: 1em; /* Further reduce score font size */
+            }
+
+            #game {
+                grid-template-columns: repeat(4, 70px); /* Smaller grid tiles for mobile */
+                grid-template-rows: repeat(4, 70px);
+                gap: 6px;
+            }
+
+            .tile {
+                width: 70px;
+                height: 70px;
+                font-size: 1.2em; /* Adjust tile text size for mobile */
+            }
+
+            #rewind-button {
+                font-size: 0.9em; /* Even smaller font size */
+                padding: 8px 14px;
+            }
+
+            #popup-content {
+                width: 90%; /* Larger width for popup on smaller screens */
+            }
+
+            #back-to-home {
+                font-size: 0.9em; /* Smaller font size for mobile back button */
+                padding: 8px 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.6em; /* Even smaller title font size */
+            }
+
+            #score, #highscore {
+                font-size: 0.9em; /* Adjust font size further for small screens */
+            }
+
+            #game {
+                grid-template-columns: repeat(4, 60px); /* Even smaller grid tiles for very small screens */
+                grid-template-rows: repeat(4, 60px);
+                gap: 4px;
+            }
+
+            .tile {
+                width: 60px;
+                height: 60px;
+                font-size: 1em; /* Further reduce font size for tiles */
+            }
+
+            #rewind-button {
+                font-size: 0.8em; /* Adjust button font size */
+                padding: 6px 12px;
+            }
+
+            #popup-content {
+                width: 90%; /* Keep the popup large for smaller screens */
+            }
+
+            #back-to-home {
+                font-size: 0.8em; /* Further reduce button font size */
+                padding: 6px 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -147,12 +262,18 @@
 <button id="back-to-home" onclick="window.location.href='index.html'">Back to Home</button>
 
 <script>
+    // Your game JavaScript code here (unchanged)
     const gameArea = document.getElementById('game');
     const rewindButton = document.getElementById('rewind-button');
     const scoreDisplay = document.getElementById('score');
     const highscoreDisplay = document.getElementById('highscore');
     const popup = document.getElementById('popup');
-    let board = Array(4).fill(null).map(() => Array(4).fill(0));
+    let board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ];
     let score = 0;
     let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
 
@@ -322,20 +443,49 @@
         initGame(); // Start the game after closing the popup
     }
 
-    document.addEventListener('keydown', (event) => {
-        switch (event.key) {
-            case 'ArrowLeft':
-                move('left');
-                break;
-            case 'ArrowRight':
+    // Detect swipe gestures for mobile
+    let touchStartX = 0, touchStartY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        // If horizontal swipe
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX > 0) {
                 move('right');
-                break;
-            case 'ArrowUp':
-                move('up');
-                break;
-            case 'ArrowDown':
+            } else {
+                move('left');
+            }
+        }
+        // If vertical swipe
+        else {
+            if (deltaY > 0) {
                 move('down');
-                break;
+            } else {
+                move('up');
+            }
+        }
+    }, { passive: true });
+
+    // Listen for arrow key events
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') {
+            move('up');
+        } else if (e.key === 'ArrowDown') {
+            move('down');
+        } else if (e.key === 'ArrowLeft') {
+            move('left');
+        } else if (e.key === 'ArrowRight') {
+            move('right');
         }
     });
 
