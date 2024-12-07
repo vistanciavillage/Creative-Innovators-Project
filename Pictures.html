@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vistancia Village Creative Innovators Project</title>
-	<link rel="icon" href="Logo.ico">
+    <link rel="icon" href="Logo.ico">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -115,6 +115,36 @@
             object-fit: cover; /* Ensure images cover the area without distortion */
             border-radius: 10px; /* Rounded corners */
         }
+
+        /* Media queries for Photos */
+        @media screen and (max-width: 1024px) {
+            #pictures img {
+                width: 300px; /* Decrease image size on medium screens */
+                height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            #pictures img {
+                width: 250px; /* Further decrease image size on smaller screens */
+                height: 250px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #pictures img {
+                width: 200px; /* Decrease size for mobile screens */
+                height: 200px;
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            #pictures img {
+                width: 150px; /* Even smaller on very small screens */
+                height: 150px;
+            }
+        }
+
     </style>
 </head>
 <body>
