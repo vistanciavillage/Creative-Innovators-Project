@@ -6,152 +6,263 @@
     <title>Vistancia Village Creative Innovators Project</title>
 	<link rel="icon" href="Logo.ico">
     <link rel="stylesheet" href="styles.css">
-    <style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background: #D5006D; /* Dark Pink */
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
+    }
+
+    nav {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        margin: 10px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.2);
+        transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    nav a:hover {
+        background: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
+    }
+
+    section {
+        padding: 20px;
+        background: #fff;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
+        text-align: center;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px 0;
+        background: #D5006D; /* Dark Pink */
+        color: #fff;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .team-member img {
+        width: 200px; /* Fixed width */
+        height: 200px; /* Fixed height */
+        object-fit: cover; /* Cover to maintain aspect ratio */
+        border-radius: 10px; /* Consistent border radius */
+    }
+
+    .social-media {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .social {
+        margin: 0 5px;
+    }
+
+    .social img {
+        width: 125px;
+        height: 125px;
+        object-fit: cover;
+    }
+
+    .back-to-top {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background: #fff;
+        color: #D5006D; /* Dark Pink */
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    .back-to-top:hover {
+        background: #D5006D; /* Dark Pink */
+        color: #fff;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
+    }
+
+    /* New CSS for Team Section */
+    #team {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    #team h2 {
+        text-align: center;
+        margin-bottom: 20px; /* Adds space below the title */
+    }
+
+    .team-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px; /* Adjust width as needed */
+        margin: 15px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-info {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    #odyssey-angels {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Remove all link styling */
+    .hidden-link {
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Inherit the color from the surrounding text */
+        display: inline; /* Make sure the link behaves like a regular inline element */
+    }
+
+    /* Optionally, you can add a subtle hover effect if you'd like */
+    .hidden-link:hover {
+        color: inherit; /* Keep the same color on hover */
+        background-color: transparent; /* No background change */
+    }
+
+    /* Mobile-Friendly */
+    @media (max-width: 768px) {
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-size: 16px;
         }
+
         header {
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
+            font-size: 2em;
         }
+
         nav {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
+
         nav a {
-            margin: 10px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            transition: background 0.3s, box-shadow 0.3s;
+            margin: 5px;
+            padding: 8px 15px;
         }
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
-        }
+
         section {
-            padding: 20px;
-            background: #fff;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .team-member img {
-            width: 200px; /* Fixed width */
-            height: 200px; /* Fixed height */
-            object-fit: cover; /* Cover to maintain aspect ratio */
-            border-radius: 10px; /* Consistent border radius */
-        }
-        .social-media {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .social {
-            margin: 0 5px;
-        }
-        .social img {
-            width: 125px;
-            height: 125px;
-            object-fit: cover;
-        }
-        .back-to-top {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: #fff;
-            color: #D5006D; /* Dark Pink */
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-        }
-        .back-to-top:hover {
-            background: #D5006D; /* Dark Pink */
-            color: #fff;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
-        }
-
-        /* New CSS for Team Section */
-        #team {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        #team h2 {
-            text-align: center;
-            margin-bottom: 20px; /* Adds space below the title */
+            padding: 15px;
         }
 
         .team-member {
-            display: flex;
+            width: 150px;
+            margin: 10px;
+        }
+
+        footer {
+            font-size: 14px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    /* Large Devices (Desktops) */
+    @media (min-width: 1024px) {
+        header {
+            font-size: 3em;
+        }
+
+        nav a {
+            padding: 15px 25px;
+        }
+
+        .team-member {
+            width: 250px;
+        }
+
+        footer {
+            font-size: 18px;
+        }
+    }
+
+    /* Small Devices (Phones) */
+    @media (max-width: 480px) {
+        body {
+            font-size: 14px;
+        }
+
+        header {
+            font-size: 1.8em;
+        }
+
+        nav {
             flex-direction: column;
             align-items: center;
-            width: 200px; /* Adjust width as needed */
-            margin: 15px;
-            background: #fff;
-            border-radius: 10px;
+        }
+
+        nav a {
+            margin: 5px;
+            padding: 8px 15px;
+        }
+
+        section {
             padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .member-info {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .team-member {
+            width: 120px;
+            margin: 5px;
         }
 
-        #odyssey-angels {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        footer {
+            font-size: 12px;
         }
-		/* Remove all link styling */
-.hidden-link {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit the color from the surrounding text */
-    display: inline; /* Make sure the link behaves like a regular inline element */
-}
 
-/* Optionally, you can add a subtle hover effect if you'd like */
-.hidden-link:hover {
-    color: inherit; /* Keep the same color on hover */
-    background-color: transparent; /* No background change */
-}
+        img {
+            max-width: 90%;
+            height: auto;
+        }
+    }
+</style>
 
-    </style>
 </head>
 <body>
 
