@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo's Crappy AI that Plays Tic-Tac-Toe</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        /* General Body and Layout */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #ff6347; /* Default red */
+            transition: background-color 1s ease; /* Smooth color transition */
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .left-panel {
+            width: 250px;
+            margin-right: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .status {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            justify-content: center;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .cell:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .cell.taken {
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cell.X {
+            color: #ff6666;
+        }
+
+        .cell.O {
+            color: #66ccff;
+        }
+
+        /* Coordinates in the corners of each cell */
+        .coordinates {
+            font-size: 12px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Back to main page button style */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:hover {
+            background-color: #5a8fb5;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            .board {
+                grid-template-columns: repeat(3, 80px);
+                grid-template-rows: repeat(3, 80px);
+            }
+
+            .cell {
+                font-size: 36px;
+                width: 80px;
+                height: 80px;
+            }
+
+            .score {
+                font-size: 18px;
+            }
+
+            .left-panel {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Main Page Button -->
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Main Page</button>
+
+    <div class="container">
+        <!-- Left Panel with AI's Thoughts -->
+        <div class="left-panel">
+            <h2>AI's Thoughts</h2>
+            <div id="ai-thoughts">AI is thinking...</div>
+        </div>
+
+        <!-- Game Area -->
+        <div class="main-game">
+            <h1>Enzo's Crappy AI that Plays Tic-Tac-Toe</h1>
+            <div class="score" id="score">AI: 0 | You: 0</div>
+            <div id="board" class="board"></div>
+            <div class="status" id="status">Your turn!</div>
+        </div>
+    </div>
+
+    <script>
+        // Randomly set the background color to either red or blue
+        function setRandomBackgroundColor() {
+            const colors = ['#ff6347', '#4682b4']; // Red and Blue
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // AI thinking process - to show what the AI is doing
+        function updateAIThoughts(thought) {
+            document.getElementById('ai-thoughts').textContent = thought;
+        }
+
+        // Game logic
+        const PLAYER_X = 1;  // Player (Human)
+        const PLAYER_O = -1; // AI (Computer)
+        const EMPTY = 0;     // Empty cell
+
+        let board = Array(9).fill(EMPTY);
+        let currentPlayer = PLAYER_X;
+        let gameOver = false;
+        let aiScore = 0;
+        let playerScore = 0;
+
+        // Load saved Q-table and scores from localStorage
+        function loadData() {
+            const savedPlayerScore = localStorage.getItem('playerScore');
+            const savedAiScore = localStorage.getItem('aiScore');
+            if (savedPlayerScore && savedAiScore) {
+                playerScore = parseInt(savedPlayerScore, 10);
+                aiScore = parseInt(savedAiScore, 10);
+            }
+            updateScore();
+        }
+
+        // Save the scores to localStorage
+        function saveData() {
+            localStorage.setItem('playerScore', playerScore);
+            localStorage.setItem('aiScore', aiScore);
+        }
+
+        // Update the score display
+        function updateScore() {
+            document.getElementById("score").textContent = `AI: ${aiScore} | You: ${playerScore}`;
+        }
+
+        // Render the game board
+        function renderBoard() {
+            const boardDiv = document.getElementById("board");
+            boardDiv.innerHTML = '';  // Clear the existing board
+
+            // Create cells for the board
+            board.forEach((cell, index) => {
+                const row = Math.floor(index / 3);
+                const col = index % 3;
+                const cellDiv = document.createElement("div");
+                cellDiv.classList.add("cell");
+                cellDiv.id = `cell${index}`;
+                cellDiv.textContent = cell === PLAYER_X ? 'X' : cell === PLAYER_O ? 'O' : '';
+                cellDiv.addEventListener("click", () => handleCellClick(index));
+
+                // Add coordinates
+                const coordDiv = document.createElement("div");
+                coordDiv.classList.add("coordinates");
+                coordDiv.textContent = `(${row}, ${col})`;
+                cellDiv.appendChild(coordDiv);
+
+                if (cell !== EMPTY) cellDiv.classList.add("taken");
+                boardDiv.appendChild(cellDiv);
+            });
+        }
+
+        // Handle user click on a cell
+        function handleCellClick(cellIndex) {
+            if (gameOver || board[cellIndex] !== EMPTY || currentPlayer !== PLAYER_X) return;
+
+            board[cellIndex] = PLAYER_X;
+            document.getElementById(`cell${cellIndex}`).textContent = 'X';
+            document.getElementById(`cell${cellIndex}`).classList.add('X');
+
+            if (checkWin(PLAYER_X)) {
+                document.getElementById("status").textContent = "You win!";
+                gameOver = true;
+                playerScore++; // Increase player score on win
+                updateScore();
+                saveData();  // Save data after each game
+                setTimeout(startNewGame, 2000); // Start new game after 2 seconds
+            } else if (isDraw()) {
+                document.getElementById("status").textContent = "It's a draw!";
+                gameOver = true;
+                updateScore();
+                saveData();  // Save data after each game
+                setTimeout(startNewGame, 2000); // Start new game after 2 seconds
+            } else {
+                currentPlayer = PLAYER_O;
+                document.getElementById("status").textContent = "Computer's turn...";
+                aiMove(); // AI makes a move
+            }
+        }
+
+        // Check if the current player has won
+        function checkWin(player) {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6] // diagonals
+            ];
+
+            return winPatterns.some(pattern => pattern.every(index => board[index] === player));
+        }
+
+        // Check if the game is a draw
+        function isDraw() {
+            return board.every(cell => cell !== EMPTY);
+        }
+
+        // AI makes a move
+        function aiMove() {
+            updateAIThoughts("AI is thinking...");
+
+            // Simulate AI's thinking process
+            setTimeout(() => {
+                updateAIThoughts("Evaluating possible moves...");
+
+                // AI considers blocking or winning
+                const emptyIndices = board.reduce((acc, val, index) => {
+                    if (val === EMPTY) acc.push(index);
+                    return acc;
+                }, []); 
+                let move = null;
+
+                // Check if AI can win
+                move = findWinningMove(PLAYER_O);
+                if (move !== null) {
+                    updateAIThoughts(`Considering position (${Math.floor(move / 3)}, ${move % 3}) to win.`);
+                } else {
+                    // Check if AI needs to block player from winning
+                    move = findWinningMove(PLAYER_X);
+                    if (move !== null) {
+                        updateAIThoughts(`Considering position (${Math.floor(move / 3)}, ${move % 3}) to block.`);
+                    } else {
+                        // Random move as a fallback
+                        move = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                        updateAIThoughts(`Considering position (${Math.floor(move / 3)}, ${move % 3}) randomly.`);
+                    }
+                }
+
+                // Make the move
+                board[move] = PLAYER_O;
+                document.getElementById(`cell${move}`).textContent = 'O';
+                document.getElementById(`cell${move}`).classList.add('O');
+
+                if (checkWin(PLAYER_O)) {
+                    document.getElementById("status").textContent = "You lose! (Computer wins)";
+                    gameOver = true;
+                    aiScore++; // Increase AI score on win
+                    updateScore();
+                    saveData();  // Save data after each game
+                    setTimeout(startNewGame, 2000); // Start new game after 2 seconds
+                } else if (isDraw()) {
+                    document.getElementById("status").textContent = "It's a draw!";
+                    gameOver = true;
+                    updateScore();
+                    saveData();  // Save data after each game
+                    setTimeout(startNewGame, 2000); // Start new game after 2 seconds
+                } else {
+                    currentPlayer = PLAYER_X;
+                    document.getElementById("status").textContent = "Your turn!";
+                }
+            }, 1000); // Simulate thinking for 1 second
+        }
+
+        // Function to find winning move for a player
+        function findWinningMove(player) {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6] // diagonals
+            ];
+
+            for (const pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                const cells = [board[a], board[b], board[c]];
+                const emptyIndex = cells.indexOf(EMPTY);
+
+                if (emptyIndex !== -1 && cells.filter(cell => cell === player).length === 2) {
+                    return pattern[emptyIndex];
+                }
+            }
+
+            return null; // No winning move
+        }
+
+        // Reset the game
+        function resetGame() {
+            board = Array(9).fill(EMPTY);
+            currentPlayer = PLAYER_X;
+            gameOver = false;
+            document.getElementById("status").textContent = "Your turn!";
+            renderBoard();
+        }
+
+        // Start a new game
+        function startNewGame() {
+            resetGame();
+            setTimeout(() => {
+                document.getElementById("status").textContent = "Your turn!";
+            }, 200);
+        }
+
+        // Start the game
+        function startGame() {
+            loadData(); // Load saved data
+            renderBoard();
+            document.getElementById("status").textContent = "Your turn!";
+        }
+
+        setRandomBackgroundColor(); // Set random background color on load
+        startGame();
+    </script>
+</body>
+</html>
