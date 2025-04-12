@@ -15,16 +15,35 @@
     }
 
     header {
-      background: url('WFOM.png') no-repeat center center/contain;
-      background-color: #000;
-      background-size: 1350px 650px;  /* Ensure the entire image is visible */
-      background-position: center center;
-      background-repeat: no-repeat;
-      height: 100vh; /* Make header take up the full height of the screen */
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
+  background: url('WFOM.png') no-repeat center center;
+  background-color: #FE0000;
+  background-size: 1350px 650px;  /* Fixed size for larger screens */
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;  /* Full viewport height */
+  max-width: 100%;
+  max-height: 100%;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  header {
+    background-size: contain;  /* Shrinks the image to fit smaller screens */
+    height: 650;  /* Allow the height to adjust to the image size */
+  }
+}
+
+/* For actual <img> tag if used */
+.header-image {
+  width: 100%;
+  max-width: 1350px;  /* Max width for large screens */
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
 
     section {
       padding: 30px 20px;
