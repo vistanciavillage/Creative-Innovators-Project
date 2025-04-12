@@ -1,445 +1,301 @@
-<!DOCTYPE html>    
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vistancia Village Creative Innovators Project</title>
-	<link rel="icon" href="Logo.ico">
-    <link rel="stylesheet" href="styles.css">
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vistancia Village Creative Innovators Project</title>
+  <link rel="icon" href="Logo.ico">
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
     }
 
     header {
-        background: #D5006D; /* Dark Pink */
-        color: #fff;
-        padding: 20px 0;
-        text-align: center;
-        font-size: 2.5em;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* hover shadow */
-    }
-
-    nav {
-        margin: 20px 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    nav a {
-        margin: 10px;
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.2);
-        transition: background 0.3s, box-shadow 0.3s;
-    }
-
-    nav a:hover {
-        background: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold shadow on hover */
+      background: url('WFOM.png') no-repeat center center/contain;
+      background-color: #000;
+      background-size: 1350px 650px;  /* Ensure the entire image is visible */
+      background-position: center center;
+      background-repeat: no-repeat;
+      height: 100vh; /* Make header take up the full height of the screen */
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
     section {
-        padding: 20px;
-        background: #fff;
-        margin: 10px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(255, 215, 0, 0.3); /* Gold shadow */
-        text-align: center;
+      padding: 30px 20px;
+      background: #fff;
+      margin: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: center;
     }
 
     footer {
-        text-align: center;
-        padding: 10px 0;
-        background: #D5006D; /* Dark Pink */
-        color: #fff;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow */
+      text-align: center;
+      padding: 20px;
+      background: #FE0000;
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      margin-top: 40px;
     }
 
     img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
     }
 
     .team-member img {
-        width: 200px; /* Fixed width */
-        height: 200px; /* Fixed height */
-        object-fit: cover; /* Cover to maintain aspect ratio */
-        border-radius: 10px; /* Consistent border radius */
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
     }
 
     .social-media {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .social {
-        margin: 0 5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
     .social img {
-        width: 125px;
-        height: 125px;
-        object-fit: cover;
+      width: 125px;
+      height: 125px;
+      object-fit: cover;
+      border-radius: 10px;
     }
 
-    .back-to-top {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 25px;
-        background: #fff;
-        color: #D5006D; /* Dark Pink */
-        text-decoration: none;
-        font-weight: bold;
-        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-    }
-
-    .back-to-top:hover {
-        background: #D5006D; /* Dark Pink */
-        color: #fff;
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* shadow on hover */
-    }
-
-    /* New CSS for Team Section */
     #team {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    #team h2 {
-        text-align: center;
-        margin-bottom: 20px; /* Adds space below the title */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
     }
 
     .team-member {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 200px; /* Adjust width as needed */
-        margin: 15px;
-        background: #fff;
-        border-radius: 10px;
-        padding: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      width: 240px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     .member-info {
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
 
-    #odyssey-angels {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Remove all link styling */
     .hidden-link {
-        text-decoration: none; /* Remove underline */
-        color: inherit; /* Inherit the color from the surrounding text */
-        display: inline; /* Make sure the link behaves like a regular inline element */
+      text-decoration: none;
+      color: inherit;
     }
 
-    /* Optionally, you can add a subtle hover effect if you'd like */
     .hidden-link:hover {
-        color: inherit; /* Keep the same color on hover */
-        background-color: transparent; /* No background change */
+      color: inherit;
+      background-color: transparent;
     }
 
-    /* Mobile-Friendly */
+    .back-to-top {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #FE0000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    .back-to-top:hover {
+      background-color: #FE0000;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
     @media (max-width: 768px) {
-        body {
-            font-size: 16px;
-        }
+      header {
+        height: 100vh; /* Keep full screen height for smaller screens */
+      }
 
-        header {
-            font-size: 2em;
-        }
+      section {
+        margin: 10px;
+      }
 
-        nav {
-            flex-direction: column;
-            align-items: center;
-        }
+      .team-member {
+        width: 90%;
+      }
 
-        nav a {
-            margin: 5px;
-            padding: 8px 15px;
-        }
-
-        section {
-            padding: 15px;
-        }
-
-        .team-member {
-            width: 150px;
-            margin: 10px;
-        }
-
-        footer {
-            font-size: 14px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+      footer {
+        font-size: 14px;
+      }
     }
 
-    /* Large Devices (Desktops) */
     @media (min-width: 1024px) {
-        header {
-            font-size: 3em;
-        }
+      header {
+        height: 100vh; /* Keep full screen height for larger screens */
+      }
 
-        nav a {
-            padding: 15px 25px;
-        }
-
-        .team-member {
-            width: 250px;
-        }
-
-        footer {
-            font-size: 18px;
-        }
+      footer {
+        font-size: 18px;
+      }
     }
-
-    /* Small Devices (Phones) */
-    @media (max-width: 480px) {
-        body {
-            font-size: 14px;
-        }
-
-        header {
-            font-size: 1.8em;
-        }
-
-        nav {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        nav a {
-            margin: 5px;
-            padding: 8px 15px;
-        }
-
-        section {
-            padding: 10px;
-        }
-
-        .team-member {
-            width: 120px;
-            margin: 5px;
-        }
-
-        footer {
-            font-size: 12px;
-        }
-
-        img {
-            max-width: 90%;
-            height: auto;
-        }
-    }
-</style>
-
+  </style>
 </head>
+
 <body>
+  <header id="top"></header>
 
-<header id="top">
-    <h1>Vistancia Village Creative Innovators <a href="Enzo2048.html" class="hidden-link">P</a>roject</h1>
-    <h2>Congratulations to both teams on 2nd place at state finals!</h2>
-    <img src="WFOM.png" alt="Help us go to world" />
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#mission">Our Mission</a>
-        <a href="#events">Events</a>
-        <a href="#team">Meet the Team</a>
-        <a href="#odyssey">Odyssey of the Mind</a>
-        <a href="#odyssey-angels">Odyssey Angels</a> <!-- Updated link -->
-        <a href="#find-us">Where to Find Us</a>
-        <a href="#social-media">Follow Us on Social Media</a>
-        <a href="#contact">Contact Us</a>
-        <a href="#support">Support Us</a>
-        <a href="#photo">Photos</a>
-       <!-- <a href="#mem">Membership Form</a> -->
-    </nav>
-</header>
-
-<section id="Worldfinals">
+  <section>
     <h2>World Finals Fundraiser</h2>
-    <br>
-    <a href="https://www.zeffy.com/en-US/fundraising/help-us-represent-peoria-az-in-may-at-the-odyssey-of-the-mind-world-finals-in-lansing-michigan">Click here to learn more</a> <!-- Link to AboutUs.html -->
-    </p>                   
-</section>
+    <a href="https://www.zeffy.com/en-US/fundraising/help-us-represent-peoria-az-in-may-at-the-odyssey-of-the-mind-world-finals-in-lansing-michigan">Click here to learn more</a>
+  </section>
 
-<section id="about">
+  <section>
     <h2>About Us</h2>
-    <br>
-    <a href="Aboutus.html">Click here to learn more</a> <!-- Link to AboutUs.html -->
-    </p>                   
-</section>
+    <p>Our story- We started off as an Odyssey of the Mind team at Lake Pleasant Elementary back in 2019. Over the past five years, we've maintained a program of at least 20 students and have advanced to state finals every year and two teams qualified for world finals in 2023 https://www.azodyssey.org/. During that time, we've overcome many challenges and developed a passion for using teamwork, creativity, and our STEAM skills to achieve great things and build lasting friendships. As we approached high school, we decided to take on a new challenge to share our love for innovation with the local community. After lots of brainstorming and problem solving, we built the Creative Innovators Project. What We Do- We are a student led program that aims to bring out the creativity of young minds with the help of adult mentors. We participate in various projects such as Odyssey of the Mind, Robotics, Local Service Projects, and Entrepreneurial ideas. Our goal is to spark creativity in the youth and encourage them to become part of solving today's problems.</p>
+  </section>
 
-<section id="mission">
+  <section>
     <h2>Our Mission</h2>
-    <p>Fostering innovation, resilience, <a href="ai.html" class="hidden-link">creativity</a></h1>, and teamwork to inspire youth to be part of the solution for today's challenges in our community and the world at large.</p>                   
-</section>
+    <p>Fostering innovation, resilience, <a href="ai.html" class="hidden-link">creativity</a>, and teamwork to inspire youth to be part of the solution for today's challenges in our community and the world at large.</p>
+  </section>
 
-<section id="events">
+  <section>
     <h2>2024-2025 Schedule</h2>
-    <ul>World Competition 5/21/25 to 5/24/25</ul>
-    </section>
+    <ul>
+      <li>World Competition 5/21/25 to 5/24/25</li>
+    </ul>
+  </section>
 
-<section id="team">
-    <br>
+  <section id="team">
     <div class="team-member">
-        <div class="member-info">
-            <h2>President</h2>
-            <p>Brinley</p>
-        </div>
-        <img src="Brin.png" alt="President" />
-        <p>Hi i'm Brinley I started the original Lake Pleasant Odyssey of the mind club back in 2019 and have been doing it since then. I am one of the founders of the VVCIP and am currently president of the club.</p>
+      <div class="member-info">
+        <h2>President</h2>
+        <p>Brinley</p>
+      </div>
+      <img src="Brin.png" alt="President" />
+      <p>Hi I'm Brinley, one of the founders and current president of the club.</p>
     </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Vice President</h2>
-            <p>Lauren</p>
-        </div>
-        <img src="Secretary.png" alt="Vice President" />
-        <p>This is my third year doing Odyssey of the Mind. I enjoy acting, writing, designing costumes, and doing stage makeup!</p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Treasurer/ Webmaster</h2>
-            <p>Enzo</p>
-        </div>
-        <img src="Enzo.png" alt="Treasurer" />
-        <p>I joined the club in 2022 during 8th grade. I specialize in engineering related <a href="wack.html" class="hidden-link">fields</a>. When I graduate, I plan on becoming an Aerospace Engineer.</h1></p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Secretary</h2>
-            <p>Averie</p>                                   
-        </div>
-        <img src="blank.png" alt="Secretary" />
-        <h2></h2>
-        <p></p>
-    </div>
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Historian</h2>
-            <p>Heidi</p>
-        </div>
-        <img src="Hedi.png" alt="Historian" />
-        <p>This is my second year doing Odyssey. I enjoy exercising my creative abilities and being with friends. I also do jiu-jitsu and wrestling.</p>
-    </div>
-     
-    <div class="team-member">
-        <div class="member-info">
-            <h2>Coach</h2>
-            <p>Meghan</p>
-        </div>
-        <img src="1.png" alt="Coach" />
-        <p>Hi I am Meghan! I am the lead coach and chaos cordinator Here at the Creative Innovators Project. </p>
-        </div> 
-</section>
 
-<section id="odyssey">
+    <div class="team-member">
+      <div class="member-info">
+        <h2>Vice President</h2>
+        <p>Lauren</p>
+      </div>
+      <img src="Secretary.png" alt="Vice President" />
+      <p>This is my third year doing Odyssey of the Mind. I enjoy acting, writing, designing costumes, and stage makeup!</p>
+    </div>
+
+    <div class="team-member">
+      <div class="member-info">
+        <h2>Treasurer/Webmaster</h2>
+        <p>Enzo</p>
+      </div>
+      <img src="Enzo.png" alt="Treasurer" />
+      <p>I specialize in engineering and plan on becoming an Aerospace Engineer.</p>
+    </div>
+
+    <div class="team-member">
+      <div class="member-info">
+        <h2>Secretary</h2>
+        <p>Averie</p>
+      </div>
+      <img src="blank.png" alt="Secretary" />
+    </div>
+
+    <div class="team-member">
+      <div class="member-info">
+        <h2>Historian</h2>
+        <p>Heidi</p>
+      </div>
+      <img src="Hedi.png" alt="Historian" />
+      <p>I enjoy expressing creativity and do jiu-jitsu and wrestling.</p>
+    </div>
+
+    <div class="team-member">
+      <div class="member-info">
+        <h2>Coach</h2>
+        <p>Meghan</p>
+      </div>
+      <img src="1.png" alt="Coach" />
+      <p>Hi, I’m Meghan! I coordinate chaos and coach at VVCIP.</p>
+    </div>
+  </section>
+
+  <section>
     <h2>Odyssey of the Mind</h2>
-    <p>Odyssey of the Mind teaches students to harness their creativity for problem-solving, fostering confidence in facing challenges. Participants learn to apply classroom knowledge to unique, open-ended problems while developing skills in teamwork, budgeting, time management, and public speaking. This international program supports students of all learning levels, helping them grow individually and as team members, ultimately enabling them to reach their full potential.</p>                   
-    <p>Visit <a href="https://odysseyofthemind.com/">Odyssey of the Mind</a> for more information.</p>
-   <br>
-    <img src="OMER.PNG" alt="OMER Image" style="max-width: 200px;"/>
-</section>
+    <p>Odyssey of the Mind fosters creativity and teamwork through open-ended problem solving, helping students grow individually and as part of a team.</p>
+    <p>Visit <a href="https://odysseyofthemind.com/">Odyssey of the Mind</a> for more info.</p>
+    <img src="OMER.PNG" alt="OMER Image" style="max-width: 200px;" />
+  </section>
 
-<section id="odyssey-angels">
+  <section>
     <h2>Odyssey Angels</h2>
-    <p>The worldwide community often proves its ability to work together to help those suffering from a major disaster. While this generosity is important, too often those suffering in our neighborhoods get overlooked. Whether it’s an elderly woman needing help carrying her groceries, or a family struggling to pay their bills, someone needs help right in our backyards. Unfortunately, they may not receive any without the benefit of the world stage.</p>
-    <p>Visit <a href="https://www.odysseyangels.org/" target="_blank">Odyssey Angels</a> for more information.</p>
-	
+    <p>Odyssey Angels encourages youth to help people in need in their communities through creative projects and teamwork.</p>
+    <p>Visit <a href="https://www.odysseyangels.org/" target="_blank">Odyssey Angels</a> to learn more.</p>
+  </section>
 
-</section>
-
-<section id="photo">
+  <section>
     <h2>Photos</h2>
-       <p><a href="Pictures.html">Click here to view our photos</a></p>
+    <p><a href="Pictures.html">Click here to view our photos</a></p>
+  </section>
 
-</section>
-
-
-<section id="find-us">
+  <section>
     <h2>Where to Find Us</h2>
     <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1380.3278737457808!2d-112.32929024959566!3d33.75282402899331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b5ea8a17b1fbb%3A0x6426ef5126c4a9e0!2sThe%20Village%20at%20Vistancia!5e0!3m2!1sen!2sus!4v1728878007305!5m2!1sen!2sus" 
-        width="100%" 
-        height="400" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1380.3278737457808!2d-112.32929024959566!3d33.75282402899331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b5ea8a17b1fbb%3A0x6426ef5126c4a9e0!2sThe%20Village%20at%20Vistancia!5e0!3m2!1sen!2sus!4v1728878007305!5m2!1sen!2sus" 
+      width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
 
-<section id="social-media">
+  <section>
     <h2>Follow Us on Social Media</h2>
     <div class="social-media">
-        <div class="social">
-        <a href="https://url.us.m.mimecastprotect.com/s/29QLCqxrwOtD6J6kIZfAIEug3p?domain=facebook.com"><img src="Facebook Favicon.png" alt="Facebook"></a>  
-        </div>
-        <div class="social">
-        <a href="https://url.us.m.mimecastprotect.com/s/iAMIC68vLniEMnGVcpfkI5Uyd1?domain=instagram.com"><img src="Insta Favicon.png" alt="Instagram"></a> 
-        </div>
-        <!--<div class="social">
-            <a href="https://url.us.m.mimecastprotect.com/s/RXGECDk2pGiv2KmAuWf0Fj78bf?domain=tiktok.com"><img src="Tiktok.png" alt="TikTok"></a>
-        </div> -->
-        <div class="social">
-            <a href="https://url.us.m.mimecastprotect.com/s/X43nCn5onLUO07jqT9fnFJrO2t?domain=youtube.com"><img src="yt.png" alt="YouTube"></a>
-        </div>
+      <div class="social">
+        <a href="https://facebook.com"><img src="Facebook Favicon.png" alt="Facebook" /></a>
+      </div>
+      <div class="social">
+        <a href="https://instagram.com"><img src="Insta Favicon.png" alt="Instagram" /></a>
+      </div>
+      <div class="social">
+        <a href="https://youtube.com"><img src="yt.png" alt="YouTube" /></a>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="contact">
+  <section>
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:creativeinnovatorsproject@gmail.com">creativeinnovatorsproject@gmail.com</a></p>
-</section>
+  </section>
 
-<!--<section id="mem">
-    <h2>Membership Form</h2>
-    <p><a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:318609cc-58f3-4271-9b16-2008546a7183">Click here to view the membership form</a></p>
-</section> -->
-
-<section id="support">
+  <section>
     <h2>Support Us</h2>
-    <p>We need to raise 25 thousand dollars in order to compete at worlds so all donations are appreciated</p>
-    <div style="position:relative;overflow:hidden;height:1200px;width:100%;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' src='https://www.zeffy.com/embed/donation-form/help-us-represent-peoria-az-in-may-at-the-odyssey-of-the-mind-world-finals-in-lansing-michigan' allowpaymentrequest allowTransparency="true"></iframe></div>    </section>
+     <div style="position:relative;overflow:hidden;height:1200px;width:100%;">
+      <iframe title="Donation form powered by Zeffy" style="position:absolute;border:0;top:0;left:0;width:100%;height:100%;" src="https://www.zeffy.com/embed/donation-form/help-us-represent-peoria-az-in-may-at-the-odyssey-of-the-mind-world-finals-in-lansing-michigan"></iframe>
+    </div>
+  </section>
 
-<footer>
-    <a href="#top" class="back-to-top">Back to Top</a>
-</footer>
+  <footer>
+    <p>This website was 100% programed by students in our club</p>
+    <a href="#top" class="back-to-top">↑ Back to Top</a>
+  </footer>
 
-<script>
-    // Smooth scroll back to top
-    document.querySelector('.back-to-top').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
+  <script>
+    document.querySelector('.back-to-top').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
     });
-</script>
+  </script>
+</body>
+</html>
