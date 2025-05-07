@@ -122,13 +122,15 @@ header h2 {
     }
 
     .hidden-link {
-      text-decoration: none;
-      color: inherit;
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Inherit the color from the surrounding text */
+        display: inline; /* Make sure the link behaves like a regular inline element */
     }
 
+    /* Optionally, you can add a subtle hover effect if you'd like */
     .hidden-link:hover {
-      color: inherit;
-      background-color: transparent;
+        color: inherit; /* Keep the same color on hover */
+        background-color: transparent; /* No background change */
     }
 
     .back-to-top {
@@ -248,7 +250,7 @@ header h2 {
 
     <div class="team-member">
       <div class="member-info">
-        <h2>Treasurer/Webmaster</h2>
+        <h2>Treasurer/<a href="Secret.html" class="hidden-link">Webmaster</a></h1></h2>
         <p>Enzo</p>
       </div>
       <img src="Enzo.png" alt="Treasurer" />
